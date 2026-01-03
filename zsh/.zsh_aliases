@@ -1,0 +1,109 @@
+
+alias x=' startx'
+
+alias v='$EDITOR'
+alias vim='nvim'
+alias sv='sudoedit'
+
+alias ..=' cd .. && ll'
+alias ...=' cd ../.. && ll'
+alias c=' clear'
+alias z=' exit'
+
+alias bat='bat --paging=never --style=grid,numbers,changes --color=always'
+#alias cm='cmake ..'
+#alias mk='make -j$(nproc)'
+#alias ut='tar xf'
+
+# : trash-list
+# : trash-restore
+# : trash-empty
+# : trash-empty 30  # delete files trashed more than 30 days ago
+# .local/share/Trash
+alias rmd='trash-put --verbose'
+
+# Repos
+alias repo=' cd $REPOS'
+alias dots=' cd $DOTFILES'
+alias notes=' cd $HOME/Zettelkasten'
+
+# config-files
+alias vzrc=' v ~/.zshrc'
+alias szrc=' source ~/.zshrc'
+#alias sk='killall ssh-agent && source ~/.zshrc'
+
+alias vi3=' v ~/.config/i3/config'
+
+# ls
+alias ls='ls --color=always'  # keep it sane: avoids insanity when piping
+alias l='eza -l --git --icons --color=always'
+alias la='eza -a --git --icons'
+alias ld='eza -D --icons'
+alias lf='eza -f --icons'
+alias ll='eza -lah@ --all --icons --git --color=always'
+alias lt='eza --tree --level=2 --long --git --icons'
+alias ltt='eza --tree --long --git --icons'
+# eza uses nerd-fonts
+
+# python
+alias py='python3'
+alias pip='pip3'
+alias actpy=' source ~/.venv/bin/activate'
+alias deact=' deactivate'
+
+# grep
+alias grep='grep --color=auto' 
+alias egrep='egrep --color=auto'
+
+# arch
+alias sget='sudo pacman -S --color auto' 
+alias pacman='pacman --color auto'
+alias syyu=' sudo pacman -Syyu --color auto'
+alias syu=' sudo pacman -Syu --color auto'
+#alias y=' yay --devel --save'
+
+# tmux
+#alias t=' tmux'
+#alias ts='tmux new-session -s' 
+#alias tl='tmux list-sessions'
+#alias ta='tmux attach -t' 
+#alias tad='tmux attach -d -t' 
+#alias tks='tmux kill-session -t' 
+
+# fzf
+alias fp=' fzf --preview "bat --style=numbers --color=always --line-range :500 {}" --border --height 70% --bind "ctrl-j:preview-half-page-down,ctrl-k:preview-half-page-up"'
+vf() {
+    local file
+    file=$(fp) || return 1  # Exit if user cancels
+    nvim "$file"
+}
+
+# git
+alias glog='git log --oneline --graph --decorate'
+alias gloga=' git log --oneline --graph --all'
+alias gc='git commit -v'
+alias gca='git commit -a'
+alias g='git'
+alias gs='git status -s'
+alias ga='git add'
+alias gcm='git commit -m'
+alias gp='git push'
+alias gpl='git pull'
+alias gd='git diff'
+alias gco='git checkout'
+alias gcb='git checkout -b'
+alias lg='lazygit'
+
+# Kubernetes
+
+# Pass
+
+# Bluetooth
+#alias btear='bluetoothctl connect 00:00:00:00:00:00'
+
+# find files recursively
+# nova() {}
+# what is the fzf script doing above
+
+# scrits
+alias fcd='eval "$($SCRIPTS/1-cd)"'
