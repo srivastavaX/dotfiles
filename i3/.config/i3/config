@@ -46,7 +46,9 @@ exec --no-startup-id dunst
 exec --no-startup-id thunderbird
 
 #exec --no-startup-id feh --randomize --bg-fill $HOME/Gallery/_wallpapers/*
-bindsym $mod+Shift+i exec --no-startup-id wallpaper
+exec_always --no-startup-id feh --bg-fill $HOME/Gallery/_wallpapers/b-495.jpg
+#exec_always --no-startup-id $HOME/repos/scripts/wallpaper2
+bindsym $mod+Shift+i exec --no-startup-id $HOME/repos/scripts/wallpaper2
 
 # █████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗
 # ╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝
@@ -234,10 +236,12 @@ for_window [window_role="GtkFileChooserDialog"] floating enable
 #assign [class="Brave-browser"] → $ws8
 for_window [class="Brave-browser" urgent="latest"] focus
 
-for_window [class="feh"] floating enabler
+for_window [class="feh"] floating enable
 for_window [con_mark="scratch"] floating enable, border pixel 2
 for_window [class="mpv"] floating enable
 for_window [class="Thunar"] floating enable, resize set 60ppt 70ppt, move position center
+
+for_window [class="Org\.gnome\.gThumb"] floating enable, resize set 90ppt 90ppt, move position center
 
 # i3bar
 #bar {
