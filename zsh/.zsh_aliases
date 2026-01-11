@@ -9,6 +9,17 @@ alias ...=' cd ../.. && ll'
 alias c=' clear'
 alias z=' exit'
 
+# ls
+alias ls='ls -h --color=always'  # keep it sane: avoids insanity when piping
+alias l='eza -l --git --icons --color=always'
+alias la='eza -a --git --icons'
+alias ld='eza -D --icons'
+alias lf='eza -f --icons'
+alias ll='eza -lah@ --all --icons --git --color=always'
+alias lt='eza --tree --level=2 --long --git --icons'
+alias ltt='eza --tree --long --git --icons'
+# eza uses nerd-fonts
+
 alias bat='bat --paging=never --style=grid,numbers,changes --color=always'
 #alias cm='cmake ..'
 #alias mk='make -j$(nproc)'
@@ -25,8 +36,8 @@ alias rm='rm -i'
 alias mv='mv -i'
 
 # Repos
-alias repo=' cd $REPOS'
-alias dots=' cd $DOTFILES'
+alias repo=' cd $REPOS && ll'
+alias dots=' cd $DOTFILES && ll'
 alias notes=' cd $HOME/Zettelkasten'
 
 # config-files
@@ -35,17 +46,6 @@ alias szrc=' source ~/.zshrc'
 #alias sk='killall ssh-agent && source ~/.zshrc'
 
 alias vi3=' v ~/.config/i3/config'
-
-# ls
-alias ls='ls -h --color=always'  # keep it sane: avoids insanity when piping
-alias l='eza -l --git --icons --color=always'
-alias la='eza -a --git --icons'
-alias ld='eza -D --icons'
-alias lf='eza -f --icons'
-alias ll='eza -lah@ --all --icons --git --color=always'
-alias lt='eza --tree --level=2 --long --git --icons'
-alias ltt='eza --tree --long --git --icons'
-# eza uses nerd-fonts
 
 # python
 alias py='python3'
