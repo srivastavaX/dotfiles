@@ -1,0 +1,101 @@
+
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+scan_timeout = 100
+#add_newline = false
+
+#format = '''
+#[┌───────────────────>](bold green)
+#[│](bold green)$directory$rust$package
+#[└─>](bold green) '''
+
+format = """
+[▓▒░](#a3aed2)\
+$directory\
+$git_branch\
+$git_status\
+$rust\
+$nodejs\
+$package\
+$python\
+$character\
+"""
+right_format = "$time"
+
+
+[character]
+success_symbol = '[](fg:#8fbcbb bg:#8fbcbb)[](fg:#8fbcbb)'
+error_symbol = '[](fg:#8fbcbb bg:#E84855)[](fg:#E84855)'
+
+# Disable vi mode bindings
+vimcmd_symbol = ""
+vimcmd_replace_one_symbol = ""
+vimcmd_replace_symbol = ""
+vimcmd_visual_symbol = ""
+
+
+[directory]
+truncation_length = 0
+truncate_to_repo = true  # If in a git repo, shows from repo root (very useful!)
+#truncation_symbol = "󰇘/"
+
+format = "[ $path ](fg:#F0EFF4 bg:#363537)[](fg:#363537 bg:#8fbcbb)"
+
+# style = "bold cyan"
+#format = " [$path]($style) [$read_only]($read_only_style)"
+#read_only = "  "
+#read_only_style = "red"
+
+
+[directory.substitutions]
+#"~" = " "
+"Media" = " "
+"dotfiles" = " dots"
+"Zettelkasten" = " zettel"
+"Downloads" = " Downloads"
+"Applications" = "Apps"
+"Documents" = " Docs"
+
+
+[git_branch]
+symbol = " "
+truncation_length = 9
+format = "[ on $symbol$branch ](fg:#0B0014 bg:#8fbcbb)"
+
+
+[git_status]
+# format = '([{$all_status}]($style) )'
+format = '[{$modified$staged}](fg:#0B0014 bg:#8fbcbb)'
+disabled = false
+
+
+[git_metrics]
+disabled = true
+
+
+[python]
+symbol = " "
+format = "[ $symbol$virtualenv](fg:#593959 bg:#8fbcbb)"
+disabled = false
+
+
+[nodejs]
+symbol = " "
+#symbol = " "
+format = "[ $symbol](fg:#0B0014 bg:#8fbcbb)"
+disabled = false
+
+
+[rust]
+disabled = true
+
+
+[time]
+disabled = false
+time_format = "%R"
+format = '[](fg:#8fbcbb)[ $time ](fg:#0B0014 bg:#8fbcbb)'
+
+
+[package]
+disabled = true
