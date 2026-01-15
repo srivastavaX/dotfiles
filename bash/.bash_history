@@ -2,3 +2,15 @@
 conda activate
 #1766553859
 zsh
+#1768446876
+cd
+#1768446883
+cd
+#1768446897
+v .bashrc
+#1768446906
+vim .bashrc
+#1768446912
+nvim .bashrc
+#1768447122
+exit
