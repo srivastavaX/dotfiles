@@ -67,17 +67,18 @@ bindkey "^r" fzf-history-widget
 
 
 # AUTO-COMPLETION
-#
-zmodload zsh/complist
+zmodload zsh/complist  # loads the completion listing module
+
 autoload -U compinit && compinit
+compinit -d "$XDG_CACHE_HOME/zsh/compdump"
+
 autoload -U colors && colors
-#compinit -d ~/.cache/zsh/compdump
 
 zstyle ':completion:*' menu select
-zstyle ':completion:*' special-dirs true
+zstyle ':completion:*' special-dirs false  # show ./ and ../ in completions
 zstyle ':completion:*' squeeze-slashes false
 
-setopt AUTO_MENU  # After one tab, show completion menu
+setopt AUTO_MENU  # After one tab, show completion menu if ambiguous
 #setopt MENU_COMPLETE  # Immediately insert first match and cycle through with tab
 # MENU_COMPLETE can be jarring because it auto-inserts
 
