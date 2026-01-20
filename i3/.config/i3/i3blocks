@@ -9,25 +9,33 @@
 [global]
 separator_block_width=0
 
-[volume_mute]
-command=echo "<span foreground='#8fbcbb' background='#2e3440' size='x-large'></span><span background='#8fbcbb'> <span size='large'>$(volume mute)</span> </span>"
-interval=once
-signal=11
-separator=false
-separator_block_width=0
-markup=pango
-color=#0E1428 
-
-[volume_num]
-command=echo "<span background='#8fbcbb' rise='2pt'>$(volume num) </span><span background='#8fbcbb' foreground='#2e3440' size='x-large'></span>"
+[volume]
+command=volume
 interval=once
 signal=10
-separator=false
 markup=pango
-color=#0E1428 
+color=#0E1428
+separator=false
+
+#[volume_mute]
+#command=echo "<span foreground='#8fbcbb' background='#2e3440' size='x-large'></span><span background='#8fbcbb'> <span size='large'>$(volume mute)</span> </span>"
+#interval=once
+#signal=11
+#separator=false
+#separator_block_width=0
+#markup=pango
+#color=#0E1428 
+#
+#[volume_num]
+#command=echo "<span background='#8fbcbb' rise='1pt' size='large'>$(volume num) </span><span background='#8fbcbb' foreground='#2e3440' size='x-large'></span>"
+#interval=once
+#signal=10
+#separator=false
+#markup=pango
+#color=#0E1428 
 
 [brightness]
-command=echo "<span size='x-large' rise='1pt'>󰃟 </span><span rise='2pt'>$(($(brightnessctl get) * 100 / $(brightnessctl max)))%</span>"
+command=/home/srivastava/repos/scripts/brightness
 color=#CCCCCC
 markup=pango
 interval=once
@@ -49,9 +57,8 @@ instance=wlp3s0
 separator=false
 
 [time]
-command=echo "<span foreground='#5e81ac' background='#2e3440' size='x-large'></span><span background='#5e81ac'> <span rise='1pt' size='x-large'>󰃯 </span><span rise='2pt'>$(date +'%a %d-%b %H:%M')</span> </span><span background='#5e81ac' foreground='#2e3440' size='x-large'></span>"
+command=echo "<span foreground='#8fbcbb' background='#2e3440' size='x-large'></span><span background='#8fbcbb' foreground='#04151f'> <span rise='1pt' size='x-large'> </span><span rise='2pt' size='large'>$(date +'%a %d-%b %H:%M')</span> </span><span background='#8fbcbb' foreground='#2e3440' size='x-large'></span>"
 markup=pango
-color=#EEEEEE
 interval=1
 separator=false
 separator_block_width=0

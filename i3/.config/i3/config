@@ -48,10 +48,7 @@ exec --no-startup-id thunderbird
 #exec --no-startup-id feh --randomize --bg-fill $HOME/Gallery/_wallpapers/*
 exec_always --no-startup-id feh --bg-fill $HOME/Gallery/_wallpapers/b-495.jpg
 #exec_always --no-startup-id $HOME/repos/scripts/wallpaper2
-bindsym $mod+Shift+i exec --no-startup-id $HOME/repos/scripts/wallpaper2
-
-# bindsym $amod+Shift+i exec --no-startup-id $HOME/repos/scripts/wallpaper next
-# bindsym $amod+Shift+o exec --no-startup-id $HOME/repos/scripts/wallpaper prev
+bindsym $mod+Shift+i exec --no-startup-id $HOME/repos/scripts/wallpaper
 
 # █████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗
 # ╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝
@@ -160,7 +157,7 @@ bindsym $mod+$amod+c exec --no-startup-id $HOME/repos/scripts/cliphist menu
 # Mod+Print: screen capture (immediate)
 bindsym Print exec --no-startup-id flameshot gui 
 #bindsym $mod+Print exec --no-startup-id flameshot full 
-bindsym $mod+Print exec --no-startup-id $HOME/repos/scripts/screenshot2
+bindsym $mod+Print exec --no-startup-id $HOME/repos/scripts/screenshot
 
 # █████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗
 # ╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝
@@ -226,8 +223,8 @@ for_window [floating] resize set 60ppt 60ppt, move position center
 # xprop | grep -E "CLASS|INSTANCE"
 # xprop | grep WM_CLASS
 # xprop | grep WM_WINDOW_ROLE
-for_window [window_role="pop-up"] floating enable
-for_window [window_role="bubble"] floating enable
+for_window [window_role="pop-up"] floating enable, move position center
+for_window [window_role="bubble"] floating enable, move position center
 for_window [window_role="task_dialog"] floating enable
 for_window [window_type="menu"] floating enable
 for_window [window_type="dialog"] floating enable
@@ -240,7 +237,7 @@ for_window [window_role="GtkFileChooserDialog"] floating enable
 for_window [class="Brave-browser" urgent="latest"] focus
 
 for_window [class="feh"] floating enable
-for_window [con_mark="scratch"] floating enable, border pixel 2
+for_window [con_mark="scratch"] floating enable, border pixel 2, move position center
 for_window [class="mpv"] floating enable
 for_window [class="Thunar"] floating enable, resize set 60ppt 70ppt, move position center
 
