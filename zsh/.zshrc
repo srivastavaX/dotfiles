@@ -88,6 +88,7 @@ source <(fzf --zsh)
 
 # █████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗
 # ╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝
+# LAZY LOADING
 
 # # BOOTSTRAPING nvm
 #export NVM_DIR="$HOME/.config/nvm"
@@ -100,6 +101,20 @@ source <(fzf --zsh)
 #    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 #    nvm "$@"
 #}
+
+
+# BOOTSTRAPING fnm (Lazy-Loading)
+#alias loadNode='eval "$(fnm env --use-on-cd --version-file-strategy=recursive)" && node -v'  # Boring
+
+# Lazy load fnm
+#node() {
+#  unset -f node
+#  eval "$(fnm env --use-on-cd)"
+#  node "$@"
+#}
+export PATH="$HOME/.local/share/fnm:$PATH"
+eval "$(fnm env --use-on-cd)"
+
 
 # █████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗
 # ╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝
@@ -122,3 +137,4 @@ else
     #print -P "▓▒░%K{#3b4252}%F{#ECEFF4}  %m %k%f%K{#8fbcbb}%F{#3b4252}%k%f%K{#8fbcbb}%F{#0B0014} %n %k%f%F{#8fbcbb}%K{#899D78} %f%k%K{#899D78}%F{#3b4252} ▲ %f%F{#0B0014}$(uptime -p | cut -c 4-) %f%k%F{#899D78}%K{#3b4252} %f%k%F{#3b4252}%K{#8fbcbb} %f%k%F{#8fbcbb} %f"
     eval "$(starship init zsh)"
 fi
+

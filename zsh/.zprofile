@@ -6,7 +6,7 @@ export EDITOR=nvim
 export VISUAL=nvim
 
 # Directories
-export GITUSER="srivastavavisek"
+#export GITUSER="srivastavavisek"
 export REPOS="$HOME/repos"
 export DOTFILES="$REPOS/dotfiles"
 export SCRIPTS="$REPOS/scripts"
@@ -16,16 +16,16 @@ export ZETTELKASTEN="$HOME/Zettelkasten"
 # PATH-CONFIGURATION
 typeset -U path
 path+=(
+    $SCRIPTS
     $HOME/bin
     $HOME/.local/bin
-    $SCRIPTS
+    $HOME/.local/share/fnm  # fnm
     #$HOME/dotnet
     #/home/vscode/.local/bin
     #
 )
 #export PATH
 # zsh automatically exports PATH
-
 
 # SOURCING
 #[[ -f ~/.zshrc ]] && . ~/.zshrc
