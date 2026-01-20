@@ -87,10 +87,9 @@ disabled = false
 
 
 [nodejs]
-symbol = " "
-#symbol = " "
-format = "[ $symbol](fg:#0B0014 bg:#8fbcbb)"
-disabled = false
+symbol = " "
+format = "[ {$symbol}](fg:#0B0014 bg:#8fbcbb)"
+disabled = true
 
 
 [rust]
