@@ -134,6 +134,8 @@ else
     #PROMPT="${NEWLINE}%K{#4c566a} %c %k%f %(?.%F{#88C0D0}.%F{#BF616A})❯%f "
     #print -P "%K{#3b4252}%F{#ECEFF4} %m %k%f%K{#4c566a}%F{#D8DEE9} %n %k%f %F{#5E81AC}▲%f %F{#D8DEE9}$(uptime -p | cut -c 4-)%f"
     print -P "${NEWLINE}%K{#6c757d} %k%K{#495057} %k%K{#3b4252}%F{#ECEFF4}  %m %k%f%K{#8fbcbb}%F{#3b4252}%k%f%K{#8fbcbb}%F{#0B0014} %n %k%f%F{#8fbcbb}%K{#899D78}%f%k%K{#899D78}%F{#3b4252} ▲ %f%F{#0B0014}$(uptime -p | cut -c 4-) %f%k%F{#899D78}%K{#3b4252}%f%k%F{#3b4252}%K{#8fbcbb}%f%k%F{#8fbcbb}%f"
+    #print -P "${NEWLINE}%K{#ffadad}  %k%K{#ffd6a5}  %k%K{#fdffb6}  %k%K{#caffbf}  %k%K{#9bf6ff}  %k%K{#a0c4ff}  %k%K{#bdb2ff}  %k%K{#ffc6ff}  %k"
+    #print -P "%K{#ffadad}  %k%K{#ffd6a5}  %k%K{#fdffb6}  %k%K{#caffbf}  %k%K{#9bf6ff}  %k%K{#a0c4ff}  %k%K{#bdb2ff}  %k%K{#ffc6ff}  %k"
     #print -P "▓▒░%K{#3b4252}%F{#ECEFF4}  %m %k%f%K{#8fbcbb}%F{#3b4252}%k%f%K{#8fbcbb}%F{#0B0014} %n %k%f%F{#8fbcbb}%K{#899D78} %f%k%K{#899D78}%F{#3b4252} ▲ %f%F{#0B0014}$(uptime -p | cut -c 4-) %f%k%F{#899D78}%K{#3b4252} %f%k%F{#3b4252}%K{#8fbcbb} %f%k%F{#8fbcbb} %f"
     eval "$(starship init zsh)"
 fi

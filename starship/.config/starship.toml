@@ -1,3 +1,9 @@
+# ░██████╗████████╗░█████╗░██████╗░░██████╗██╗░░██╗██╗██████╗░
+# ██╔════╝╚══██╔══╝██╔══██╗██╔══██╗██╔════╝██║░░██║██║██╔══██╗
+# ╚█████╗░░░░██║░░░███████║██████╔╝╚█████╗░███████║██║██████╔╝
+# ░╚═══██╗░░░██║░░░██╔══██║██╔══██╗░╚═══██╗██╔══██║██║██╔═══╝░
+# ██████╔╝░░░██║░░░██║░░██║██║░░██║██████╔╝██║░░██║██║██║░░░░░
+# ╚═════╝░░░░╚═╝░░░╚═╝░░╚═╝╚═╝░░╚═╝╚═════╝░╚═╝░░╚═╝╚═╝╚═╝░░░░░
 
 # Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
@@ -15,7 +21,8 @@ scan_timeout = 200
 #[](fg:#343a40 bg:#495057)\
 
 format = """
-[](fg:#363537)\
+[](fg:#899D78)\
+$time\
 $directory\
 $git_branch\
 $git_status\
@@ -25,7 +32,7 @@ $package\
 $python\
 $character\
 """
-right_format = "$time"
+#right_format = "$time"
 
 
 [character]
@@ -66,7 +73,7 @@ format = "[ $path ](fg:#F0EFF4 bg:#363537)[](fg:#363537 bg:#8fbcbb)"
 
 [git_branch]
 symbol = " "
-truncation_length = 9
+truncation_length = 15
 format = "[ on $symbol$branch ](fg:#0B0014 bg:#8fbcbb)"
 
 
@@ -99,7 +106,8 @@ disabled = true
 [time]
 disabled = false
 time_format = "%R"
-format = '[](fg:#8fbcbb)[ $time ](fg:#0B0014 bg:#8fbcbb)'
+#format = '[](fg:#8fbcbb)[ $time ](fg:#0B0014 bg:#8fbcbb)'
+format = '[$time](fg:#0a0908 bg:#899D78)[](fg:#899D78 bg:#363537)'
 
 
 [package]
