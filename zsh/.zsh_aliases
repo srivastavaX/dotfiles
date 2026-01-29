@@ -73,14 +73,6 @@ alias egrep='egrep --color=auto'
 #alias tad='tmux attach -d -t' 
 #alias tks='tmux kill-session -t' 
 
-# fzf
-alias Rf=' fzf --preview "bat --style=numbers --color=always --line-range :500 {}" --border --height 70% --bind "ctrl-j:preview-half-page-down,ctrl-k:preview-half-page-up"'
-vf() {
-    local file
-    file=$(fp) || return 1  # Exit if user cancels
-    nvim "$file"
-}
-
 # git
 #alias glog='git log --oneline --graph --decorate'
 #alias gloga=' git log --oneline --graph --all'
@@ -99,7 +91,6 @@ alias gcb='git checkout -b'
 # python
 alias py='python3'
 alias pip='pip3'
-alias actpy=' source ~/.venv/bin/activate'
 alias deact=' deactivate'
 
 # Kubernetes

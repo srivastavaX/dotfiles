@@ -7,6 +7,7 @@
 # srivastavavisek
 
 . ~/.zsh_aliases
+[[ -f ~/.zsh_functions ]] && source ~/.zsh_functions
 
 # SHELL OPTIONS
 setopt autocd
