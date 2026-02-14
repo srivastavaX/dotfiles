@@ -28,8 +28,8 @@ HISTFILE="$XDG_CACHE_HOME/zsh_histfile"
 HISTSIZE=500000
 SAVEHIST=500000
 
-# setopt HIST_IGNORE_ALL_DUPS  # keeps only the latest instance of any command
-setopt HIST_EXPIRE_DUPS_FIRST # Delete duplicates first when hist size is reached
+setopt HIST_IGNORE_ALL_DUPS  # keeps only the latest instance of any command
+#setopt HIST_EXPIRE_DUPS_FIRST # Delete duplicates first when hist size is reached
 setopt HIST_IGNORE_DUPS  # ignores a command if it's the exact same as the previous one
 
 setopt SHARE_HISTORY      # Share history between sessions
@@ -119,12 +119,28 @@ eval "$(fnm env --use-on-cd)"
 
 # █████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗
 # ╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝
-# FASTFETCH
+# --- FASTFETCH ---
 FASTFETCH="/tmp/fastfetch_shown"
 if [[ ! -f "$FASTFETCH" && "$TERM" == "alacritty" ]]; then
     fastfetch
     touch "$FASTFETCH"
 fi
+
+
+# --- zoxide ---
+eval "$(zoxide init zsh)"
+alias cd="z"
+
+
+# --- yazi ---
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
 
 
 # PROMPT SETUP
@@ -140,4 +156,3 @@ else
     #print -P "▓▒░%K{#3b4252}%F{#ECEFF4}  %m %k%f%K{#8fbcbb}%F{#3b4252}%k%f%K{#8fbcbb}%F{#0B0014} %n %k%f%F{#8fbcbb}%K{#899D78} %f%k%K{#899D78}%F{#3b4252} ▲ %f%F{#0B0014}$(uptime -p | cut -c 4-) %f%k%F{#899D78}%K{#3b4252} %f%k%F{#3b4252}%K{#8fbcbb} %f%k%F{#8fbcbb} %f"
     eval "$(starship init zsh)"
 fi
-
