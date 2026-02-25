@@ -5,6 +5,7 @@ width = 300
 origin = top
 offset = 0x20      # adjust vertical offset to sit below i3bar
 
+
 progress_bar = true
 progress_bar_height = 12
 progress_bar_frame_width = 1
@@ -82,6 +83,10 @@ timeout = 1000
 [volume]
 appname = "Volume"
 highlight = "#cba6f7"
+
+[play_sound]
+summary = "*"
+script = "/home/srivastava/Media/notify.mp3"
 
 [backlight]
 appname = "Backlight"

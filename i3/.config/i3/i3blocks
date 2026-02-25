@@ -9,6 +9,24 @@
 [global]
 separator_block_width=0
 
+[thunderbird]
+command=~/.config/i3/launcher " " "#8fbcbb" thunderbird
+interval=once
+markup=pango
+separator=false
+
+[system_monitor]
+command=~/.config/i3/launcher "󰍹 " "#8fbcbb" alacritty -e btop
+interval=once
+markup=pango
+separator=false
+
+[whatsapp]
+command=~/.config/i3/launcher "󰖣 " "#8fbcbb" brave --profile-directory="Profile 2" https://web.whatsapp.com/
+interval=once
+markup=pango
+separator=false
+
 [volume]
 command=volume
 interval=once

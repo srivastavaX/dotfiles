@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+ICON="${1:-}"
+COLOR="${2:-#8fbcbb}"
+shift 2
+
+#echo "<span foreground='$COLOR' size='x-large'>$ICON</span>"
+#echo
+#echo "$COLOR"
+
+printf '%s\n' "<span foreground='${COLOR}' size='x-large'>${ICON}</span>"
+printf '\n'
+printf '%s\n' "${COLOR}"
+
+#[[ "$BLOCK_BUTTON" == "1" ]] && exec "$@"
+[[ "$BLOCK_BUTTON" == "1" ]] && setsid -f "$@" >/dev/null 2>&1 &

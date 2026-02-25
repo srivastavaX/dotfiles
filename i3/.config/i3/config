@@ -142,7 +142,7 @@ bindsym $mod+s sticky toggle; exec --no-startup-id notify-send "Sticky Toggled"
 # Send focused window to scratchpad
 bindsym $mod+Shift+grave exec --no-startup-id notify-send "Sent to scratchpad"; mark scratch, move scratchpad
 # Show / hide scratchpad window
-bindsym $mod+grave scratchpad show; focus
+bindsym $mod+space scratchpad show; focus
 # Repeated presses cycle through them round-robin style.
 
 # clipboard-manager
