@@ -31,7 +31,7 @@ path+=(
 #[[ -f ~/.zshrc ]] && . ~/.zshrc
 # This makes login shells behave like interactive shells by force.
 
-redshift -x
+#redshift -x
 
 # AUTO-START X ON TTY1
 if [[ -z $DISPLAY ]] && [[ "$(tty)" = /dev/tty1 ]]; then

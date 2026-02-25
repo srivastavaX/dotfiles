@@ -1,7 +1,9 @@
 alias x=' startx'
 alias v=' $EDITOR'
-alias vim='nvim'
+alias vim=' nvim'
 alias sv='sudoedit'
+
+alias incog=' unset HISTFILE'
 
 # ls
 alias ls='ls -h --color=always'  # keep it sane: avoids insanity when piping
@@ -15,9 +17,10 @@ alias ltt='eza --tree --long --git --icons'
 # eza uses nerd-fonts
 
 # DIRECTORIES
-alias r=' cd $REPOS && ll'
-alias dots=' cd $DOTFILES && ll'
+alias r=' cd $REPOS && ls'
+alias dots=' cd $DOTFILES && ls'
 alias notes=' cd $HOME/Zettelkasten'
+alias lib=' cd Library && ls'
 
 # config-files
 alias vzrc=' v ~/.zshrc'
@@ -29,7 +32,7 @@ alias vi3=' v ~/.config/i3/config'
 alias ..=' cd .. && ll'
 alias ...=' cd ../.. && ll'
 alias c=' clear'
-alias zz=' exit'
+alias q=' exit'
 alias hist=' history -i'
 alias cd=' cd'
 alias shut=' shutdown now'
@@ -52,8 +55,8 @@ alias rm='rm -i'
 alias mv='mv -i'
 
 # scripts
-alias Rd='eval "$($SCRIPTS/1-cd)"'
-alias Rs='eval "$($SCRIPTS/exec-script)"'
+alias Rd=' eval "$($SCRIPTS/1-cd)"'
+alias Rs=' eval "$($SCRIPTS/exec-script)"'
 
 # █████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗
 # ╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝
@@ -101,5 +104,5 @@ alias deact=' deactivate'
 # Pass
 
 # Bluetooth
-#alias btear='bluetoothctl connect 00:00:00:00:00:00'
-
+alias boat='bluetoothctl connect 41:42:64:26:95:B0'
+alias disconnect='bluetoothctl disconnect'

@@ -23,8 +23,8 @@ unsetopt prompt_sp
 # █████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗
 # ╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝
 # HISTORY
-HISTFILE="$XDG_CACHE_HOME/zsh_histfile"
-#HISTFILE=~/.histfile
+#HISTFILE="$XDG_CACHE_HOME/zsh_histfile"
+HISTFILE=~/.histfile
 HISTSIZE=500000
 SAVEHIST=500000
 
@@ -32,8 +32,8 @@ setopt HIST_IGNORE_ALL_DUPS  # keeps only the latest instance of any command
 #setopt HIST_EXPIRE_DUPS_FIRST # Delete duplicates first when hist size is reached
 setopt HIST_IGNORE_DUPS  # ignores a command if it's the exact same as the previous one
 
-setopt SHARE_HISTORY      # Share history between sessions
-setopt INC_APPEND_HISTORY
+#setopt SHARE_HISTORY      # Share history between sessions
+#setopt INC_APPEND_HISTORY
 setopt APPEND_HISTORY
 # append_history: Adds to history file instead of overwriting
 # inc_append_historyWrites to history immediately after each command 
@@ -126,6 +126,10 @@ if [[ ! -f "$FASTFETCH" && "$TERM" == "alacritty" ]]; then
     touch "$FASTFETCH"
 fi
 
+#if [[ "$TERM" == "alacritty" ]]; then
+#    fastfetch
+#fi
+
 
 # --- zoxide ---
 eval "$(zoxide init zsh)"
@@ -155,4 +159,16 @@ else
     #print -P "%K{#ffadad}  %k%K{#ffd6a5}  %k%K{#fdffb6}  %k%K{#caffbf}  %k%K{#9bf6ff}  %k%K{#a0c4ff}  %k%K{#bdb2ff}  %k%K{#ffc6ff}  %k"
     #print -P "▓▒░%K{#3b4252}%F{#ECEFF4}  %m %k%f%K{#8fbcbb}%F{#3b4252}%k%f%K{#8fbcbb}%F{#0B0014} %n %k%f%F{#8fbcbb}%K{#899D78} %f%k%K{#899D78}%F{#3b4252} ▲ %f%F{#0B0014}$(uptime -p | cut -c 4-) %f%k%F{#899D78}%K{#3b4252} %f%k%F{#3b4252}%K{#8fbcbb} %f%k%F{#8fbcbb} %f"
     eval "$(starship init zsh)"
+    #eval "$(starship init zsh)" 2>/dev/null
+    #THIS WILL SUPRESS ALL WARNINGS
+fi
+
+#cd ~/repos
+
+#if [[ "$TERM_PROGRAM" != "vscode" ]]; then
+#  cd ~/repos
+#fi
+
+if [[ "$PWD" == "$HOME" ]]; then
+  cd ~/repos
 fi
