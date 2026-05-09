@@ -9,6 +9,29 @@
 . ~/.zsh_aliases
 [[ -f ~/.zsh_functions ]] && source ~/.zsh_functions
 
+
+export PATH="$HOME/.local/share/fnm:$PATH"
+eval "$(fnm env --use-on-cd)"
+
+# NVM (Node Version Manager)
+if [[ -d "$HOME/.nvm" ]]; then
+  export NVM_DIR="$HOME/.nvm"
+  [[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"
+  [[ -s "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
+fi
+
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+
+if command -v pyenv >/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+
+# opencode
+export PATH=/home/srivastava/.opencode/bin:$PATH
+
+
 # SHELL OPTIONS
 setopt autocd
 setopt auto_param_slash  # when complete dir is written the adds slash instead of space
@@ -18,6 +41,13 @@ setopt no_case_glob no_case_match globdots
 setopt interactive_comments  # allows # comments in command line
 unsetopt prompt_sp  
 # prevents zsh from adding a % when programs don't end output witha newline
+
+setopt numericglobsort
+
+#WORDCHARS='_-' # Don't consider certain characters part of the word
+
+# hide EOL sign ('%')
+#PROMPT_EOL_MARK=""
 
 
 # █████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗
@@ -30,13 +60,15 @@ SAVEHIST=500000
 
 setopt HIST_IGNORE_ALL_DUPS  # keeps only the latest instance of any command
 #setopt HIST_EXPIRE_DUPS_FIRST # Delete duplicates first when hist size is reached
-setopt HIST_IGNORE_DUPS  # ignores a command if it's the exact same as the previous one
+#setopt HIST_IGNORE_DUPS  # ignores a command if it's the exact same as the previous one
 
 #setopt SHARE_HISTORY      # Share history between sessions
-#setopt INC_APPEND_HISTORY
-setopt APPEND_HISTORY
+#setopt APPEND_HISTORY
+setopt INC_APPEND_HISTORY
 # append_history: Adds to history file instead of overwriting
 # inc_append_historyWrites to history immediately after each command 
+setopt HIST_FCNTL_LOCK
+# If you open multiple terminals, they may write to the history file simultaneously.
 
 setopt HIST_IGNORE_SPACE
 # for aliases better to focus on HIST_IGNORE_SPACE and prefix a space
@@ -54,15 +86,17 @@ setopt HIST_REDUCE_BLANKS  # Remove extra blanks from history
 #bindkey -v
 #bindkey -e  # force emacs mode everywhere
 
+bindkey " " magic-space
+bindkey '^[[3~' delete-char                       # delete
 bindkey "^a" beginning-of-line
 bindkey "^e" end-of-line
 bindkey "^d" kill-line  # Delete from cursor to end-of-line
-bindkey "^s" backward-kill-line
 bindkey "^b" backward-word
 bindkey "^w" forward-word
-bindkey "^h" backward-kill-word
+bindkey '^[[1;5D' backward-kill-word
 bindkey "^k" history-search-backward
 bindkey "^j" history-search-forward
+bindkey "^z" undo
 
 bindkey "^r" fzf-history-widget
 
@@ -70,7 +104,8 @@ bindkey "^r" fzf-history-widget
 # AUTO-COMPLETION
 zmodload zsh/complist  # loads the completion listing module
 
-autoload -U compinit && compinit
+#autoload -U compinit && compinit
+autoload -U compinit
 compinit -d "$XDG_CACHE_HOME/zsh/compdump"
 
 autoload -U colors && colors
@@ -113,8 +148,7 @@ source <(fzf --zsh)
 #  eval "$(fnm env --use-on-cd)"
 #  node "$@"
 #}
-export PATH="$HOME/.local/share/fnm:$PATH"
-eval "$(fnm env --use-on-cd)"
+
 
 
 # █████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗
@@ -128,6 +162,11 @@ fi
 
 #if [[ "$TERM" == "alacritty" ]]; then
 #    fastfetch
+#fi
+
+#if [[ -n $PS1 ]]; then
+#   ~/.config/neofetch/animated-neofetch.sh 0.05
+#  clear
 #fi
 
 
@@ -147,6 +186,17 @@ function y() {
 }
 
 
+#cd ~/repos
+
+#if [[ "$TERM_PROGRAM" != "vscode" ]]; then
+#  cd ~/repos
+#fi
+
+if [[ "$PWD" == "$HOME" ]]; then
+  cd $DEV
+fi
+
+
 # PROMPT SETUP
 NEWLINE=$'\n'
 if [[ "$TERM" == "linux" ]]; then
@@ -161,14 +211,4 @@ else
     eval "$(starship init zsh)"
     #eval "$(starship init zsh)" 2>/dev/null
     #THIS WILL SUPRESS ALL WARNINGS
-fi
-
-#cd ~/repos
-
-#if [[ "$TERM_PROGRAM" != "vscode" ]]; then
-#  cd ~/repos
-#fi
-
-if [[ "$PWD" == "$HOME" ]]; then
-  cd ~/repos
 fi

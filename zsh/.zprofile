@@ -7,16 +7,16 @@ export VISUAL=nvim
 
 # Directories
 #export GITUSER="srivastavavisek"
-export REPOS="$HOME/repos"
-export DOTFILES="$REPOS/dotfiles"
-export SCRIPTS="$REPOS/scripts"
-export ZETTELKASTEN="$HOME/Zettelkasten"
+export DEV="$HOME/dev"
+export DOTFILES="$DEV/dotfiles"
+export SCRIPTS="$DEV/scripts"
 
 
 # PATH-CONFIGURATION
 typeset -U path
 path+=(
     $SCRIPTS
+
     $HOME/bin
     $HOME/.local/bin
     $HOME/.local/share/fnm  # fnm

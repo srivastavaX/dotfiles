@@ -17,6 +17,7 @@ body {
 :root {
   --font-family-system: 'JetBrainsMono Nerd Font', 'JetBrains Mono', 'Consolas', monospace;
   --font-family-monospace: 'JetBrainsMono Nerd Font', 'JetBrains Mono', 'Courier New', monospace;
+  --h3-color: #FF82B2;
 }
 
 .cm-editor .cm-content, 
@@ -28,4 +29,18 @@ body {
 .theme-dark, .theme-light {
     --bold-weight: 900 !important;
     --bold-modifier: 900 !important;
+}
+
+.markdown-preview-view h3 {
+  color: #FF82B2 !important;
+}
+
+.cm-editor .cm-header-3 {
+  color: #FF82B2 !important;
+}
+
+.cm-editor .cm-header-3, 
+.cm-header-4,
+.cm-header-5 {
+  font-weight: 900 !important;
 }

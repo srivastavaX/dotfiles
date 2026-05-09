@@ -17,10 +17,7 @@ alias ltt='eza --tree --long --git --icons'
 # eza uses nerd-fonts
 
 # DIRECTORIES
-alias r=' cd $REPOS && ls'
 alias dots=' cd $DOTFILES && ls'
-alias notes=' cd $HOME/Zettelkasten'
-alias lib=' cd Library && ls'
 
 # config-files
 alias vzrc=' v ~/.zshrc'
@@ -95,8 +92,8 @@ alias gco='git checkout'
 alias gcb='git checkout -b'
 
 # python
-alias py='python3'
-alias pip='pip3'
+#alias py='python3'
+#alias pip='pip3'
 alias deact=' deactivate'
 
 # Kubernetes
@@ -104,5 +101,5 @@ alias deact=' deactivate'
 # Pass
 
 # Bluetooth
-alias boat='bluetoothctl connect 41:42:64:26:95:B0'
+alias boat=' bluetoothctl connect 41:42:71:35:C9:FC'
 alias disconnect='bluetoothctl disconnect'
