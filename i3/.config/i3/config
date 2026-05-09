@@ -33,7 +33,7 @@ font pango:JetBrains Mono Nerd Font 9
 # dex reads the .desktop files in standard autostart locations
 
 #exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
-exec --no-startup-id xss-lock --transfer-sleep-lock -- $SCRIPTS/lock
+exec --no-startup-id xss-lock --transfer-sleep-lock -- $HOME/repos/scripts/lock
 #exec --no-startup-id nm-applet
 
 # compositor
@@ -46,9 +46,9 @@ exec --no-startup-id dunst
 exec --no-startup-id thunderbird
 
 #exec --no-startup-id feh --randomize --bg-fill $HOME/Gallery/_wallpapers/*
-exec_always --no-startup-id feh --bg-fill $HOME/Gallery/_wallpapers/b-317.jpg
+exec_always --no-startup-id feh --bg-fill $HOME/Gallery/_wallpapers/b-495.jpg
 #exec_always --no-startup-id $HOME/repos/scripts/wallpaper2
-bindsym $mod+Shift+i exec --no-startup-id $SCRIPTS/wallpaper
+bindsym $mod+Shift+i exec --no-startup-id $HOME/repos/scripts/wallpaper
 
 # █████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗
 # ╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝
@@ -58,7 +58,7 @@ bindsym $mod+Return exec $term
 bindsym $mod+e exec thunar
 bindsym $amod+8 exec code
 bindsym $amod+0 exec obsidian
-bindsym $amod+9 exec brave --profile-directory="Default"
+bindsym $amod+9 exec brave
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -67,21 +67,16 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 #bindsym $mod+Shift+q "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
-bindsym XF86MonBrightnessUp exec --no-startup-id $SCRIPTS/brightness up
-bindsym XF86MonBrightnessDown exec --no-startup-id $SCRIPTS/brightness down
+bindsym XF86MonBrightnessUp exec --no-startup-id $HOME/repos/scripts/brightness up
+bindsym XF86MonBrightnessDown exec --no-startup-id $HOME/repos/scripts/brightness down
 
 #set $refresh_i3status killall -SIGUSR1 i3status
 #bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% 
 #bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% 
 #bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym XF86AudioRaiseVolume exec --no-startup-id $SCRIPTS/volume up
-bindsym XF86AudioLowerVolume exec --no-startup-id $SCRIPTS/volume down
-bindsym XF86AudioMute exec --no-startup-id $SCRIPTS/volume toggle
-
-bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
-bindsym XF86AudioNext exec --no-startup-id playerctl next
-bindsym XF86AudioPrev exec --no-startup-id playerctl previous
-bindsym XF86AudioStop exec --no-startup-id playerctl stop
+bindsym XF86AudioRaiseVolume exec --no-startup-id $HOME/repos/scripts/volume up
+bindsym XF86AudioLowerVolume exec --no-startup-id $HOME/repos/scripts/volume down
+bindsym XF86AudioMute exec --no-startup-id $HOME/repos/scripts/volume toggle
 
 # kill focused container
 bindsym $mod+q kill
@@ -151,8 +146,8 @@ bindsym $mod+space scratchpad show; focus
 # Repeated presses cycle through them round-robin style.
 
 # clipboard-manager
-bindsym $mod+c exec --no-startup-id $SCRIPTS/cliphist add
-bindsym $mod+$amod+c exec --no-startup-id $SCRIPTS/cliphist menu
+bindsym $mod+c exec --no-startup-id $HOME/repos/scripts/cliphist add
+bindsym $mod+$amod+c exec --no-startup-id $HOME/repos/scripts/cliphist menu
 
 #bindsym --release $mod+y exec --no-startup-id import /tmp/latest-screenshot.png
 #bindsym --release $mod+m exec --no-startup-id import -window root /tmp/latest-screenshot.png
@@ -162,8 +157,7 @@ bindsym $mod+$amod+c exec --no-startup-id $SCRIPTS/cliphist menu
 # Mod+Print: screen capture (immediate)
 bindsym Print exec --no-startup-id flameshot gui 
 #bindsym $mod+Print exec --no-startup-id flameshot full 
-bindsym $mod+Print exec --no-startup-id $SCRIPTS/screenshot
-bindsym $mod+Shift+Print exec --no-startup-id $SCRIPTS/screenshot2
+bindsym $mod+Print exec --no-startup-id $HOME/repos/scripts/screenshot
 
 # █████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗
 # ╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝
@@ -249,8 +243,6 @@ for_window [class="Thunar"] floating enable, resize set 60ppt 70ppt, move positi
 
 for_window [class="Org\.gnome\.gThumb"] floating enable, resize set 90ppt 90ppt, move position center
 
-for_window [title="nmtui-float"] floating enable
-
 # i3bar
 #bar {
     # disable clicking on workspace buttons
@@ -267,14 +259,14 @@ bar {
 #   mode invisible
 
 #   font pango:OpenDyslexic Nerd Font Bold 9
-    font pango:JetBrainsMono Nerd Font Bold 9
+    font pango:JetBrainsMono Nerd Font Bold 8
 
 #   strip_workspace_numbers yes
     strip_workspace_name    yes
 #   separator_symbol " "
 
 #   stop switching workspaces every time my finger twitches
-#   bindsym button1 nop
+    bindsym button1 nop
     bindsym button2 nop
     bindsym button3 nop
     bindsym button4 nop
@@ -292,9 +284,9 @@ bar {
 #       separator           #44475A
 
 #       <colorclass>        <border>    <background>    <text>
-        focused_workspace   #8fbcbb     #8fbcbb         #00000000
+        focused_workspace   #2e3440     #1ABC9CC0       #00000000
         active_workspace    #2e3440     #2e3440         #F8F8F2
-        inactive_workspace  #2e3440     #2e3440         #8fbcbb
+        inactive_workspace  #2e3440     #2e3440         #1ABC9C
         urgent_workspace    #00000000   #FF5555         #F8F8F2
         binding_mode        #00000000   #FF5555         #F8F8F2
     } 
@@ -334,7 +326,7 @@ set $powerMode power
 bindsym $mod+Control+l mode "$powerMode"
 mode "$powerMode" {
 #   bindsym l mode "default", exec --no-startup-id i3lock -c 00000000
-#   bindsym l mode "default", exec --no-startup-id $HOME/repos/scripts/lock2
+    bindsym l mode "default", exec --no-startup-id $HOME/repos/scripts/lock2
       
 #   bindsym e mode "default", exec --no-startup-id i3exit logout    
 #   bindsym s mode "default", exec --no-startup-id i3exit suspend   

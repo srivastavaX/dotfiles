@@ -42,8 +42,12 @@ truncate_to_repo = true  # If in a git repo, shows from repo root (very useful!)
 format = "[ $path ](fg:#F0EFF4 bg:#363537)"
 
 [directory.substitutions]
-"dev" = " dev"
+#"~" = " "
+"Media" = " "
+"dotfiles" = " dots"
+"Zettelkasten" = " zettel"
 "Downloads" = " Downloads"
+"repos" = "repo  "
 
 [git_branch]
 symbol = " "
