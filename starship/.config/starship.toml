@@ -1,0 +1,75 @@
+# ░██████╗████████╗░█████╗░██████╗░░██████╗██╗░░██╗██╗██████╗░
+# ██╔════╝╚══██╔══╝██╔══██╗██╔══██╗██╔════╝██║░░██║██║██╔══██╗
+# ╚█████╗░░░░██║░░░███████║██████╔╝╚█████╗░███████║██║██████╔╝
+# ░╚═══██╗░░░██║░░░██╔══██║██╔══██╗░╚═══██╗██╔══██║██║██╔═══╝░
+# ██████╔╝░░░██║░░░██║░░██║██║░░██║██████╔╝██║░░██║██║██║░░░░░
+# ╚═════╝░░░░╚═╝░░░╚═╝░░╚═╝╚═╝░░╚═╝╚═════╝░╚═╝░░╚═╝╚═╝╚═╝░░░░░
+
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+scan_timeout = 200
+#add_newline = false
+
+format = """
+[](fg:#363537)\
+$directory\
+[](fg:#363537 bg:#8fbcbb)\
+$git_branch\
+$git_status\
+[](fg:#8fbcbb bg:#899D78)\
+$python\
+[](fg:#899D78 bg:#363537)\
+$character\
+"""
+
+
+[character]
+success_symbol = '[](fg:#363537)'
+error_symbol = '[](fg:#363537 bg:#E84855)[](fg:#E84855)'
+
+# Disable vi mode bindings
+vimcmd_symbol = ""
+vimcmd_replace_one_symbol = ""
+vimcmd_replace_symbol = ""
+vimcmd_visual_symbol = ""
+
+
+[directory]
+#truncation_length = 0
+truncation_length = 1
+truncate_to_repo = true  # If in a git repo, shows from repo root (very useful!)
+format = "[ $path ](fg:#F0EFF4 bg:#363537)"
+
+[directory.substitutions]
+"dev" = " dev"
+"Downloads" = " Downloads"
+
+[git_branch]
+symbol = " "
+truncation_length = 15
+format = "[ on $symbol$branch ](fg:#0B0014 bg:#8fbcbb)"
+
+[git_status]
+# format = '([{$all_status}]($style) )'
+format = '[{$modified$staged} ](fg:#0B0014 bg:#8fbcbb)'
+disabled = false
+
+[python]
+symbol = " "
+format = "[ $symbol$virtualenv ](fg:#363537 bg:#899D78)"
+disabled = false
+
+[nodejs]
+symbol = " "
+format = "[ {$symbol}](fg:#0B0014 bg:#8fbcbb)"
+disabled = true
+
+[rust]
+disabled = true
+
+[time]
+disabled = true
+
+[package]
+disabled = true

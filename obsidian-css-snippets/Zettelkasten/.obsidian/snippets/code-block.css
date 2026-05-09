@@ -1,0 +1,20 @@
+/* Highlight line on hover */
+.HyperMD-codeblock.cm-line:not(.HyperMD-codeblock-begin-bg):not(.HyperMD-codeblock-end-bg):hover {
+    background-color: var(--background-primary-alt) !important;
+    transition: background-color 0.2s ease;
+}
+
+/* Comments (# comment) */
+span.cm-comment {
+    color: #5C6370;  /* Gray */
+    font-style: italic;
+}
+
+/* === INLINE CODE === */
+.cm-inline-code {
+    padding: 0.2em 0.4em !important;
+    background-color: var(--code-background) !important;
+    color: var(--code-normal) !important;
+    border-radius: 3px;
+    font-size: 0.9em;
+}

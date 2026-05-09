@@ -1,0 +1,93 @@
+# ██╗██████╗░██████╗░██╗░░░░░░█████╗░░█████╗░██╗░░██╗░██████╗
+# ╚═╝╚════██╗██╔══██╗██║░░░░░██╔══██╗██╔══██╗██║░██╔╝██╔════╝
+# ██║░█████╔╝██████╦╝██║░░░░░██║░░██║██║░░╚═╝█████═╝░╚█████╗░
+# ██║░╚═══██╗██╔══██╗██║░░░░░██║░░██║██║░░██╗██╔═██╗░░╚═══██╗
+# ██║██████╔╝██████╦╝███████╗╚█████╔╝╚█████╔╝██║░╚██╗██████╔╝
+# ╚═╝╚═════╝░╚═════╝░╚══════╝░╚════╝░░╚════╝░╚═╝░░╚═╝╚═════╝░
+
+# Global properties
+[global]
+separator_block_width=0
+
+[thunderbird]
+command=~/.config/i3/launcher " " "#8fbcbb" thunderbird
+interval=once
+markup=pango
+separator=false
+
+[system_monitor]
+command=~/.config/i3/launcher "󰍹 " "#8fbcbb" alacritty -e btop
+interval=once
+markup=pango
+separator=false
+
+[whatsapp]
+command=~/.config/i3/launcher "󰖣 " "#8fbcbb" brave --profile-directory="Profile 4" https://web.whatsapp.com/
+interval=once
+markup=pango
+separator=false
+
+[volume]
+command=volume
+interval=once
+signal=10
+markup=pango
+color=#0E1428
+separator=false
+
+#[volume_mute]
+#command=echo "<span foreground='#8fbcbb' background='#2e3440' size='x-large'></span><span background='#8fbcbb'> <span size='large'>$(volume mute)</span> </span>"
+#interval=once
+#signal=11
+#separator=false
+#separator_block_width=0
+#markup=pango
+#color=#0E1428 
+#
+#[volume_num]
+#command=echo "<span background='#8fbcbb' rise='1pt' size='large'>$(volume num) </span><span background='#8fbcbb' foreground='#2e3440' size='x-large'></span>"
+#interval=once
+#signal=10
+#separator=false
+#markup=pango
+#color=#0E1428 
+
+[brightness]
+command=brightness
+color=#CCCCCC
+markup=pango
+interval=once
+signal=2
+separator=false
+
+[battery]
+command=battery
+markup=pango
+interval=2
+separator=false
+
+[wifi]
+markup=pango
+command=wifi
+color=#CCCCCC
+interval=10
+instance=wlp3s0
+separator=false
+
+[time]
+command=echo "<span foreground='#8fbcbb' background='#2e3440' size='x-large'></span><span background='#8fbcbb' foreground='#04151f'> <span rise='1pt' size='x-large'> </span><span rise='2pt' size='large'>$(date +'%a %d-%b %H:%M')</span> </span><span background='#8fbcbb' foreground='#2e3440' size='x-large'></span>"
+markup=pango
+interval=1
+separator=false
+separator_block_width=0
+
+#[rofi-powermenu]
+#command=echo "<span foreground='#81a1c1' size='large'></span> "; if [ $button ]; then rofi -show menu -modi 'menu:rofi-power-menu' >/dev/null; fi
+#markup=pango
+#interval=1
+
+#[arch]
+#command=/home/srivastava/repos/scripts/arch-logo
+#interval=once
+#color=#1793d1
+#markup=pango

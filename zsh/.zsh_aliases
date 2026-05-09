@@ -1,0 +1,105 @@
+alias x=' startx'
+alias v=' $EDITOR'
+alias vim=' nvim'
+alias sv='sudoedit'
+
+alias incog=' unset HISTFILE'
+
+# ls
+alias ls='ls -h --color=always'  # keep it sane: avoids insanity when piping
+alias l='eza -l --git --icons --color=always'
+alias la='eza -a --git --icons'
+alias ld='eza -D --icons'
+alias lf='eza -f --icons'
+alias ll='eza -lah@ --all --icons --git --color=always'
+alias lt='eza --tree --level=2 --long --git --icons'
+alias ltt='eza --tree --long --git --icons'
+# eza uses nerd-fonts
+
+# DIRECTORIES
+alias dots=' cd $DOTFILES && ls'
+
+# config-files
+alias vzrc=' v ~/.zshrc'
+alias szrc=' source ~/.zshrc'
+alias vi3=' v ~/.config/i3/config'
+
+#alias sk='killall ssh-agent && source ~/.zshrc'
+
+alias ..=' cd .. && ll'
+alias ...=' cd ../.. && ll'
+alias c=' clear'
+alias q=' exit'
+alias hist=' history -i'
+alias cd=' cd'
+alias shut=' shutdown now'
+alias sus=' systemctl suspend'
+
+#alias cm='cmake ..'
+#alias mk='make -j$(nproc)'
+#alias ut='tar xf'
+
+alias bat='bat --paging=never --style=grid,numbers,changes --color=always'
+
+# : trash-list
+# : trash-restore
+# : trash-empty
+# : trash-empty 30  # delete files trashed more than 30 days ago
+# .local/share/Trash
+alias rt='trash-put --verbose'
+alias rm='rm -i'
+
+alias mv='mv -i'
+
+# scripts
+alias Rd=' eval "$($SCRIPTS/1-cd)"'
+alias Rs=' eval "$($SCRIPTS/exec-script)"'
+
+# █████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗
+# ╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝
+# pacman
+alias sget='sudo pacman -S --color auto' 
+alias pacman='pacman --color auto'
+alias syyu=' sudo pacman -Syyu --color auto'
+alias syu=' sudo pacman -Syu --color auto'
+#alias y=' yay --devel --save'
+
+# grep
+alias grep='grep --color=auto' 
+alias egrep='egrep --color=auto'
+
+# tmux
+#alias t=' tmux'
+#alias ts='tmux new-session -s' 
+#alias tl='tmux list-sessions'
+#alias ta='tmux attach -t' 
+#alias tad='tmux attach -d -t' 
+#alias tks='tmux kill-session -t' 
+
+# git
+#alias glog='git log --oneline --graph --decorate'
+#alias gloga=' git log --oneline --graph --all'
+#alias gc='git commit -v'
+#alias gca='git commit -a'
+#alias gs='git status -s'
+#alias gd='git diff'
+#alias lg='lazygit'
+alias g='git'
+alias ga='git add'
+alias gcm='git commit -m'
+alias gp='git push'
+alias gco='git checkout'
+alias gcb='git checkout -b'
+
+# python
+#alias py='python3'
+#alias pip='pip3'
+alias deact=' deactivate'
+
+# Kubernetes
+
+# Pass
+
+# Bluetooth
+alias boat=' bluetoothctl connect 41:42:71:35:C9:FC'
+alias disconnect='bluetoothctl disconnect'

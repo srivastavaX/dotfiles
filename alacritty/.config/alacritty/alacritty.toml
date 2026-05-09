@@ -1,0 +1,52 @@
+[general]
+import = [
+    "~/.config/alacritty/catppuccin-mocha.toml",
+    #"~/.config/alacritty/kanagawa_wave.toml",
+]
+
+#[env]
+#TERM = "xterm-256color"
+
+[window]
+decorations = "None"
+dynamic_title = true
+opacity = 0.9
+
+[window.padding]
+x = 7
+y = 7
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[font]
+size = 10
+normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
+#builtin_box_drawing = true
+
+#[colors.vi_mode_cursor]
+#text = "#1e1e2e"       # dark surface
+#cursor = "#94e2d5"     # bright aqua
+
+#[colors.search.matches]
+#foreground = "#cdd6f4"
+#background = "#45475a"
+
+#[colors.search.focused_match]
+#foreground = "#1e1e2e"
+#background = "#f38ba8"
+
+#[colors.line_indicator]
+#foreground = "#f5e0dc"
+#background = "#585b70"
+
+#[colors.footer_bar]
+#foreground = "#cdd6f4"
+#background = "#313244"
+
+[bell]
+animation = "EaseOutCubic"
+duration = 120
+#color = "#cdd6f4"
+color = "#ff4f4f"

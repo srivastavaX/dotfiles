@@ -1,0 +1,33 @@
+# fzf
+alias Rf=' fzf --preview "bat --style=numbers --color=always --line-range :500 {}" --border --height 70% --bind "ctrl-j:preview-half-page-down,ctrl-k:preview-half-page-up"'
+vf() {
+    local file
+    file=$(Rf) || return 1  # Exit if user cancels
+    nvim "$file"
+}
+
+actpy() {
+    local VENVS_DIR="$HOME/.venvs"
+    local selected_venv
+    [[ ! -d "$VENVS_DIR" ]] && printf "\033[0;31mNO VIRTUAL ENV FOUND!!!\033[0m\n" && return 0
+
+    selected_venv=$(fd --type d --max-depth 1 --base-directory "$VENVS_DIR" "" \
+        | fzf --height=40% --border=rounded --pointer="" --prompt=" ACTIVATE  ❯ " --cycle \
+        --bind="ctrl-c:abort,esc:abort"  --layout=reverse )
+
+    [[ -z "$selected_venv" ]] && printf "\033[0;31m\033[1mNO VIRTUALENV SELECTED\033[0m\n" >&2 && return 0
+
+    selected_venv="${selected_venv%/}"
+
+    # if deactivate exists from activated virtualenv then type deactivate returns 0
+    # if it doesn't then type returns non-zero
+    type deactivate &>/dev/null && deactivate
+    source "$VENVS_DIR/$selected_venv/bin/activate"
+    printf "\n\033[0;32m✓ ACTIVATED\033[0m: \033[1;33m\033[1m%s\033[0m\n" "$selected_venv"
+}
+
+#venv() {
+#    [[ -z "$1" ]] && { echo "Usage: mkvenv <name>"; return 1; }
+#    python -m venv "$HOME/.venvs/$1"
+#    echo "Virtualenv $1 created"
+#}

@@ -1,0 +1,10 @@
+.nav-folder-title[data-path="00 - attachments"],
+.nav-folder-title[data-path="00 - attachments"] + .nav-folder-children {
+  opacity: 0.3;
+  transition: opacity 0.2s ease;
+}
+
+.nav-folder-title[data-path="00 - attachments"]:hover,
+.nav-folder-title[data-path="00 - attachments"]:hover + .nav-folder-children {
+  opacity: 1;
+}
