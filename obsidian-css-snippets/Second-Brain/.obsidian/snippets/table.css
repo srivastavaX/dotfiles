@@ -1,0 +1,117 @@
+:root {
+  --table-radius:          8px;
+  --table-cell-padding-v:  0.65em;
+  --table-cell-padding-h:  1.1em;
+  --table-header-bg:       var(--background-secondary-alt);
+  --table-header-color:    var(--text-normal);
+  --table-row-even-bg:     var(--background-secondary);
+  --table-row-odd-bg:      var(--background-primary);
+  --table-hover-bg:        var(--background-modifier-hover);
+  --table-hover-accent:    var(--interactive-accent);
+  --table-border:          1px solid var(--background-modifier-border);
+  --table-divider:         1px solid var(--background-modifier-border-hover);
+}
+
+
+/* ── Wrapper — editor (Live Preview) ────────────────────────── */
+.cm-table-widget {
+  margin: 1.8em 0;
+}
+
+.cm-table-widget .table-wrapper {
+  border-radius: var(--table-radius);
+  border: var(--table-border);
+  overflow: hidden;
+}
+
+
+/* ── Scope all rules to markdown content only ─────────────── */
+.cm-table-widget table,
+.markdown-preview-view table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92em;
+}
+
+
+/* ── Header ─────────────────────────────────────────────────── */
+.cm-table-widget thead,
+.markdown-preview-view thead {
+  background-color: var(--table-header-bg);
+  border-bottom: 2px solid var(--interactive-accent);  /* accent underline */
+}
+
+.cm-table-widget thead th,
+.markdown-preview-view thead th {
+  color: var(--table-header-color);
+  font-weight: 600;
+  font-size: 0.88em;
+  letter-spacing: 0.04em;
+  text-align: left;
+  padding: var(--table-cell-padding-v) var(--table-cell-padding-h);
+  /* Vertical column separator */
+  border-right: var(--table-divider);
+}
+
+.cm-table-widget thead th:last-child,
+.markdown-preview-view thead th:last-child {
+  border-right: none;
+}
+
+
+/* ── Body cells ─────────────────────────────────────────────── */
+.cm-table-widget .table-cell-wrapper,
+.markdown-preview-view td {
+  padding: var(--table-cell-padding-v) var(--table-cell-padding-h);
+  border-right: var(--table-divider);
+}
+
+.cm-table-widget td:last-child,
+.markdown-preview-view td:last-child {
+  border-right: none;
+}
+
+
+/* ── Alternating rows ───────────────────────────────────────── */
+.cm-table-widget tbody tr:nth-child(odd),
+.markdown-preview-view tbody tr:nth-child(odd) {
+  background-color: var(--table-row-odd-bg);
+}
+
+.cm-table-widget tbody tr:nth-child(even),
+.markdown-preview-view tbody tr:nth-child(even) {
+  background-color: var(--table-row-even-bg);
+}
+
+
+/* ── Row hover — transition on BASE, not on :hover ─────────── */
+.cm-table-widget tbody tr,
+.markdown-preview-view tbody tr {
+  transition:
+    background-color 0.15s ease,
+    border-left-color 0.15s ease;
+  border-left: 3px solid transparent;  /* reserved space, no layout shift */
+}
+
+/* Accent left rail + highlight — overrides alternating cleanly */
+.cm-table-widget tbody tr:hover,
+.markdown-preview-view tbody tr:hover {
+  background-color: var(--table-hover-bg);
+  border-left-color: var(--table-hover-accent);
+}
+
+
+/* ── Row separators ─────────────────────────────────────────── */
+.cm-table-widget tbody tr + tr,
+.markdown-preview-view tbody tr + tr {
+  border-top: var(--table-border);
+}
+
+
+/* ── Reading view wrapper rounding ──────────────────────────── */
+.markdown-preview-view .table-wrapper,
+.markdown-preview-view table {
+  border-radius: var(--table-radius);
+  overflow: hidden;
+  border: var(--table-border);
+}
