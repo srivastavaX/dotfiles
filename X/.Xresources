@@ -9,4 +9,4 @@ Xft.rgba: rgb
 Xft.lcdfilter: lcddefault
 
 Xcursor.theme: [Adwaita]
-Xcursor.size: 40
+Xcursor.size: 24
