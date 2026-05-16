@@ -1,55 +1,88 @@
-set adjust-open "width"
-set pages-per-row 1
-set scroll-page-aware true
-set smooth-scroll true
-set scroll-full-overlap 0.02
-set scroll-step 50
+# Window / Layout
+set window-height 3000
+set window-width 3000
+set window-title-basename "true"
 
-set sandbox none
+# Font
+set font "Inconsolata 9"
 
-set zoom-min 10
-set zoom-max 1000
+# Clipboard
+set selection-clipboard clipboard
 
-set guioptions ""
-set font "Inconsolata 15"
+# Scrolling (smoother)
+set scroll-page-aware "true"
+set smooth-scroll "true"
+set scroll-full-overlap 0.08
+set scroll-step 80
 
-set default-bg "#FFFFFF"
-set default-fg "#000000"
+# Dark theme
+set default-bg "#0A0A0A"
+set default-fg "#EAEAEA"
 
-set statusbar-bg "#F0F0F0"
-set statusbar-fg "#202020"
+set statusbar-bg "#121212"
+set statusbar-fg "#AFAFAF"
 
-set inputbar-bg "#F0F0F0"
-set inputbar-fg "#000000"
+set inputbar-bg "#101010"
+set inputbar-fg "#FFFFFF"
 
-set notification-bg "#D0D0D0"
-set notification-fg "#000000"
+set completion-bg "#1A1A1A"
+set completion-fg "#D0D0D0"
+set completion-highlight-bg "#4C9AFF"
+set completion-highlight-fg "#0A0A0A"
 
-set notification-error-bg "#CC3333"
+set notification-bg "#2E7D32"
+set notification-fg "#FFFFFF"
+
+set notification-warning-bg "#FFB300"
+set notification-warning-fg "#000000"
+
+set notification-error-bg "#D32F2F"
 set notification-error-fg "#FFFFFF"
 
-set notification-warning-bg "#CC3333"
-set notification-warning-fg "#FFFFFF"
+# Highlighting
+set highlight-color '#FFD166'
+set highlight-active-color '#4C9AFF'
 
-set highlight-color "#F4BF7566"
-set highlight-active-color "#6A9FB566"
+# Rendering
+set render-loading "false"
+set render-loading-bg "#0A0A0A"
 
-map p set recolor true
-map P set recolor false
+# Recolor Mode
+set recolor "false"
 set recolor-lightcolor "#000000"
-set recolor-darkcolor "#E0E0E0"
-set recolor-reverse-video true
-set recolor-keephue true
+set recolor-darkcolor "#EAEAEA"
+set recolor-reverse-video "true"
+set recolor-keephue "true"
 
-set render-loading false
+# UX improvements
+set adjust-open "best-fit"
+set statusbar-home-tilde "true"
+set window-icon "true"
 
-map f follow
+# Search Behavior
+set incremental-search "true"
+set search-wrap "true"
 
-map F toggle_fullscreen
-map [fullscreen] F toggle_fullscreen
+# Vim-style
+map j scroll down
+map k scroll up
+map h scroll left
+map l scroll right
+map J navigate next
+map K navigate previous
+map <C-d> scroll half-down
+map <C-u> scroll half-up
+map <C-f> scroll full-down
+map <C-b> scroll full-up
+map <Space> scroll full-down
+map <C-Space> scroll full-up
 
-map J zoom in
-map K zoom out
+map r rotate
+map R rotate-ccw
 
-map r reload
 map q quit
+map s save
+
+map y copy-to-clipboard
+
+map d recolor

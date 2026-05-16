@@ -1,14 +1,21 @@
+# https://github.com/sxyazi/yazi/blob/shipped/yazi-config/preset/yazi-default.toml
+
+# A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
+# If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
+
 [mgr]
-show_hidden     = true
-ratio           = [1, 4, 3]
-sort_by         = "alphabetical"
-sort_reverse    = false
+ratio          = [ 1, 4, 3 ]
+sort_by        = "alphabetical"
+sort_sensitive = false
+sort_reverse   = false
+sort_dir_first = true
 sort_translit  = false
-sort_fallback  = "alphabetical"
-linemode       = "size_and_mtime"
+linemode       = "none"
+show_hidden    = true
 show_symlink   = true
 scrolloff      = 5
-mouse_events   = [ "click", "scroll", "move" ]
+mouse_events   = [ "click", "scroll" ]
+title_format   = "Yazi: {cwd}"
 
 [preview]
 wrap            = "no"
@@ -18,40 +25,25 @@ max_height      = 900
 cache_dir       = ""
 image_delay     = 30
 image_filter    = "triangle"
-image_quality   = 60
+image_quality   = 75
 ueberzug_scale  = 1
 ueberzug_offset = [ 0, 0, 0, 0 ]
 
 [opener]
 edit = [
-	#{ run = "nvim %s", desc = "Neovim", block = true },
-    { run = "nvim \"$@\"", desc = "Neovim", block = true }
+	{ run = "${EDITOR:-vi} %s", desc = "$EDITOR",      for = "unix", block = true }
 ]
-pdf = [
-    #{ run = "zathura %s", orphan = true, desc = "Zathura" }
-    { run = "zathura --fork \"$@\"", orphan = true, desc = "Zathura" },
-    { run = "xdg-open \"$@\"", orphan = true, desc = "Fallback PDF Viewer" }
-]
-image = [
-    #{ run = "nsxiv %s", orphan = true, desc = "nsvix" }
-    { run = "nsxiv \"$@\"", orphan = true, desc = "nsxiv" }
-]
-media = [
-	#{ run = "mpv %s", desc = "Play", orphan = true },
-    { run = "mpv \"$@\"", desc = "Play", orphan = true }
-]
-browser = [
-    #{ run = "brave %s", orphan = true, desc = "Browser" }
-    #{ run = "brave \"$@\"", orphan = true, desc = "Browser" }
-    { run = "qutebrowser \"$@\"", orphan = true, desc = "Qutebrowser" }
+play = [
+	{ run = "xdg-open %s1",    desc = "Play", for = "linux", orphan = true },
+	{ run = "mediainfo %s1; echo 'Press enter to exit'; read _", block = true, desc = "Show media info", for = "unix" },
 ]
 open = [
-	#{ run = "xdg-open %s1", desc = "Open" },
-    { run = "xdg-open \"$1\"", desc = "Open" }
+	{ run = "xdg-open %s1",    desc = "Open", for = "linux" }
 ]
-#reveal = [
-#	{ run = "xdg-open %d1", desc = "Reveal" },
-#]
+reveal = [
+	{ run = "xdg-open %d1",         desc = "Reveal", for = "linux" },
+	{ run = "clear; exiftool %s1; echo 'Press enter to exit'; read _", desc = "Show EXIF", for = "unix", block = true },
+]
 extract = [
 	{ run = "ya pub extract --list %s", desc = "Extract here" },
 ]
@@ -63,27 +55,29 @@ download = [
 [open]
 rules = [
 	# Folder
-	{ url = "*/", use = "open" },
-	{ mime = "text/*", use = "edit" },
-    { mime = "text/html", use = "browser" },
-    { mime = "application/xhtml+xml", use = "browser" },
-    { mime = "application/pdf", use = "pdf" },
-	{ mime = "image/*", use = "image" },
-	{ mime = "{audio,video}/*", use = "media" },
-	{ mime = "application/{json,ndjson,javascript,wine-extension-ini}", use = "edit" },
-	{ mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", use = "extract" },
+	{ url = "*/", use = [ "edit", "open", "reveal" ] },
+	# Text
+	{ mime = "text/*", use = [ "edit", "reveal" ] },
+	# Image
+	{ mime = "image/*", use = [ "open", "reveal" ] },
+	# Media
+	{ mime = "{audio,video}/*", use = [ "play", "reveal" ] },
+	# Archive
+	{ mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", use = [ "extract", "reveal" ] },
+	# JSON
+	{ mime = "application/{json,ndjson}", use = [ "edit", "reveal" ] },
+	{ mime = "*/javascript", use = [ "edit", "reveal" ] },
+	# Empty file
 	{ mime = "inode/empty", use = [ "edit", "reveal" ] },
+	# Virtual file system
 	{ mime = "vfs/{absent,stale}", use = "download" },
 	# Fallback
-	{ url = "*", use = "browser" },
+	{ url = "*", use = [ "open", "reveal" ] },
 ]
 
 [tasks]
-file_workers     = 3
-plugin_workers   = 5
-fetch_workers    = 5
-preload_workers  = 2
-process_workers  = 5
+micro_workers    = 10
+macro_workers    = 10
 bizarre_retry    = 3
 image_alloc      = 536870912  # 512MB
 image_bound      = [ 10000, 10000 ]
@@ -91,15 +85,12 @@ suppress_preload = false
 
 [plugin]
 fetchers = [
-	# MIME-type
-	{ url = "*/",         run = "mime.dir",    prio = "high", group = "mime" },
-	{ url = "local://*",  run = "mime.local",  prio = "high", group = "mime" },
-	{ url = "remote://*", run = "mime.remote", prio = "high", group = "mime" },
+	# Mimetype
+	{ id = "mime", url = "*/",         run = "mime.dir", prio = "high" },
+	{ id = "mime", url = "local://*",  run = "mime.local", prio = "high" },
+	{ id = "mime", url = "remote://*", run = "mime.remote", prio = "high" },
 ]
 spotters = [
-	# Multi-file
-	{ mime = "multi/*", run = "multi" },
-	# Folder
 	{ url = "*/", run = "folder" },
 	# Code
 	{ mime = "text/*", run = "code" },
@@ -167,7 +158,7 @@ previewers = [
 ]
 
 [input]
-cursor_blink = true
+cursor_blink = false
 
 # cd
 cd_title  = "Change directory:"

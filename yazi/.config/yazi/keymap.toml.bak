@@ -1,7 +1,6 @@
-# A TOML linter such as https://github.com/tombi-toml/tombi can use this schema to validate your config.
-# If you encounter any problems, please make an issue at https://github.com/yazi-rs/schemas.
-
-#:schema https://yazi-rs.github.io/schemas/keymap.json
+# A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
+# If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
+"$schema" = "https://yazi-rs.github.io/schemas/keymap.json"
 
 [mgr]
 
@@ -16,20 +15,20 @@ keymap = [
 	# Hopping
 	{ on = "k", run = "arrow prev", desc = "Previous file" },
 	{ on = "j", run = "arrow next", desc = "Next file" },
+
 	{ on = "<Up>",   run = "arrow prev", desc = "Previous file" },
 	{ on = "<Down>", run = "arrow next", desc = "Next file" },
 
-    # Faster Traversal
-    { on = "J", run = "arrow 10%", desc = "Fast down" },
-    { on = "K", run = "arrow -10%", desc = "Fast up" },
 	{ on = "<C-u>", run = "arrow -50%",  desc = "Move cursor up half page" },
 	{ on = "<C-d>", run = "arrow 50%",   desc = "Move cursor down half page" },
 	{ on = "<C-b>", run = "arrow -100%", desc = "Move cursor up one page" },
 	{ on = "<C-f>", run = "arrow 100%",  desc = "Move cursor down one page" },
+
 	{ on = "<S-PageUp>",   run = "arrow -50%",  desc = "Move cursor up half page" },
 	{ on = "<S-PageDown>", run = "arrow 50%",   desc = "Move cursor down half page" },
 	{ on = "<PageUp>",     run = "arrow -100%", desc = "Move cursor up one page" },
 	{ on = "<PageDown>",   run = "arrow 100%",  desc = "Move cursor down one page" },
+
 	{ on = [ "g", "g" ], run = "arrow top", desc = "Go to top" },
 	{ on = "G",          run = "arrow bot", desc = "Go to bottom" },
 
@@ -52,6 +51,10 @@ keymap = [
 	{ on = "v", run = "visual_mode",         desc = "Enter visual mode (selection mode)" },
 	{ on = "V", run = "visual_mode --unset", desc = "Enter visual mode (unset mode)" },
 
+	# Seeking
+	{ on = "K", run = "seek -5", desc = "Seek up 5 units in the preview" },
+	{ on = "J", run = "seek 5",  desc = "Seek down 5 units in the preview" },
+
 	# Spotting
 	{ on = "<Tab>", run = "spot", desc = "Spot hovered file" },
 
@@ -69,7 +72,7 @@ keymap = [
 	{ on = "<C-->",     run = "hardlink",                    desc = "Hardlink yanked files" },
 	{ on = "Y",         run = "unyank",                      desc = "Cancel the yank status" },
 	{ on = "X",         run = "unyank",                      desc = "Cancel the yank status" },
-	{ on = [ "d", "d" ],  run = "remove",                  desc = "Trash selected files" },
+	{ on = "d",         run = "remove",                      desc = "Trash selected files" },
 	{ on = "D",         run = "remove --permanently",        desc = "Permanently delete selected files" },
 	{ on = "a",         run = "create",                      desc = "Create a file (ends with / for directories)" },
 	{ on = "r",         run = "rename --cursor=before_ext",  desc = "Rename selected file(s)" },
@@ -91,10 +94,10 @@ keymap = [
 	{ on = [ "m", "n" ], run = "linemode none",        desc = "Linemode: none" },
 
 	# Copy
-	{ on = [ "c", "c" ], run = "copy path",             desc = "Copy file URL" },
-	{ on = [ "c", "d" ], run = "copy dirname",          desc = "Copy directory URL" },
-	{ on = [ "c", "f" ], run = "copy filename",         desc = "Copy filename" },
-	{ on = [ "c", "n" ], run = "copy name_without_ext", desc = "Copy filename without extension" },
+	{ on = [ "c", "c" ], run = "copy path",             desc = "Copy the file path" },
+	{ on = [ "c", "d" ], run = "copy dirname",          desc = "Copy the directory path" },
+	{ on = [ "c", "f" ], run = "copy filename",         desc = "Copy the filename" },
+	{ on = [ "c", "n" ], run = "copy name_without_ext", desc = "Copy the filename without extension" },
 
 	# Filter
 	{ on = "f", run = "filter --smart", desc = "Filter files" },
@@ -128,8 +131,7 @@ keymap = [
 	{ on = [ "g", "f" ],       run = "follow",           desc = "Follow hovered symlink" },
 
 	# Tabs
-	{ on = [ "t", "t" ], run = "tab_create --current",     desc = "Create a new tab in CWD" },
-	{ on = [ "t", "r" ], run = "tab_rename --interactive", desc = "Rename current tab" },
+	{ on = "t", run = "tab_create --current", desc = "Create a new tab with CWD" },
 
 	{ on = "1", run = "tab_switch 0", desc = "Switch to first tab" },
 	{ on = "2", run = "tab_switch 1", desc = "Switch to second tab" },
