@@ -1,0 +1,54 @@
+[Default Applications]
+# Browser
+text/html=org.qutebrowser.qutebrowser.desktop
+x-scheme-handler/http=org.qutebrowser.qutebrowser.desktop
+x-scheme-handler/https=org.qutebrowser.qutebrowser.desktop
+x-scheme-handler/about=org.qutebrowser.qutebrowser.desktop
+x-scheme-handler/unknown=org.qutebrowser.qutebrowser.desktop
+
+# Documents
+application/pdf=org.pwmt.zathura.desktop
+
+# Images
+image/png=gthumb.desktop
+image/jpeg=gthumb.desktop
+image/png=gthumb.desktop
+image/jpeg=gthumb.desktop
+image/jpg=gthumb.desktop
+image/gif=gthumb.desktop
+image/webp=gthumb.desktop
+#image/png=nsxiv.desktop
+#image/jpeg=nsxiv.desktop
+#image/jpg=nsxiv.desktop
+#image/gif=nsxiv.desktop
+#image/webp=nsxiv.desktop
+
+# Video and Audio
+video/mp4=mpv.desktop
+video/x-matroska=mpv.desktop
+video/webm=mpv.desktop
+audio/mpeg=mpv.desktop
+audio/flac=mpv.desktop
+audio/ogg=mpv.desktop
+audio/wav=mpv.desktop
+
+# Text fallback (GUI apps may ignore this anyway)
+text/plain=nvim.desktop
+text/markdown=nvim.desktop
+text/x-python=nvim.desktop
+text/x-c=nvim.desktop
+application/json=nvim.desktop
+
+# File Manager
+inode/directory=nemo.desktop
+
+
+[Added Associations]
+
+text/html=org.qutebrowser.qutebrowser.desktop;
+application/pdf=org.pwmt.zathura.desktop;
+image/png=gthumb.desktop;
+image/jpeg=gthumb.desktop;
+video/mp4=mpv.desktop;
+audio/mpeg=mpv.desktop;
+inode/directory=nemo.desktop;
