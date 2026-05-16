@@ -25,7 +25,7 @@ set $amod Mod1
 set $term alacritty
 
 # fonts and colors
-font pango:JetBrains Mono Nerd Font 9
+font pango:JetBrains Mono Nerd Font 9, Noto Sans Devanagari 9, Noto Color Emoji 9
 
 #exec --no-startup-id dex --autostart --environment i3
 # .desktop file exists only for autostart purposes in a DEs. 
@@ -38,24 +38,30 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- $SCRIPTS/lock
 
 # compositor
 #exec_always --no-startup-id picom -b
+exec --no-startup-id picom --backend glx --vsync --no-fading-openclose -b
 
 bindsym $mod+d exec --no-startup-id rofi -show drun
 exec --no-startup-id dunst
 #exec --no-startup-id xedgewarp -b
 
-exec --no-startup-id thunderbird
+#exec --no-startup-id thunderbird
 
 #exec --no-startup-id feh --randomize --bg-fill $HOME/Gallery/_wallpapers/*
-exec_always --no-startup-id feh --bg-fill $HOME/Gallery/_wallpapers/b-317.jpg
+
+#exec_always --no-startup-id feh --bg-fill $HOME/Gallery/_wallpapers/b-317.jpg
+# Since you're using a static wallpaper, use exec — it only runs once at session start. 
+# exec_always makes sense only if you have a dynamic wallpaper script that needs to re-apply on restart.
+exec --no-startup-id feh --bg-fill $HOME/Media/Wallpapers/wallpaper.png
+
 #exec_always --no-startup-id $HOME/repos/scripts/wallpaper2
-bindsym $mod+Shift+i exec --no-startup-id $SCRIPTS/wallpaper
+#bindsym $mod+Shift+i exec --no-startup-id $SCRIPTS/wallpaper
 
 # █████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗
 # ╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝
 # [ WORKFLOW: KEY-BINDINGS AND UTILITIES ]
 
 bindsym $mod+Return exec $term
-bindsym $mod+e exec thunar
+bindsym $mod+e exec nemo
 bindsym $amod+8 exec code
 bindsym $amod+0 exec obsidian
 bindsym $amod+9 exec brave --profile-directory="Default"
@@ -79,9 +85,6 @@ bindsym XF86AudioLowerVolume exec --no-startup-id $SCRIPTS/volume down
 bindsym XF86AudioMute exec --no-startup-id $SCRIPTS/volume toggle
 
 bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
-bindsym XF86AudioNext exec --no-startup-id playerctl next
-bindsym XF86AudioPrev exec --no-startup-id playerctl previous
-bindsym XF86AudioStop exec --no-startup-id playerctl stop
 
 # kill focused container
 bindsym $mod+q kill
@@ -101,8 +104,10 @@ bindsym $mod+l          focus   right
 bindsym $amod+space focus mode_toggle
 
 # Scroll 
-bindsym $amod+Up        exec    --no-startup-id xdotool click 4
-bindsym $amod+Down      exec    --no-startup-id xdotool click 5
+#bindsym $amod+Up        exec    --no-startup-id xdotool click 4
+#bindsym $amod+Down      exec    --no-startup-id xdotool click 5
+# Every keypress here forks a new process, invokes xdotool, 
+# synthesizes an X event, then the process exits
 
 # move focused window
 bindsym $mod+Shift+h    move    left  20px
@@ -217,14 +222,16 @@ client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
 # n-pixel border and no title bar
 new_window pixel 1
 #title_align center
-hide_edge_borders vertical
+#hide_edge_borders vertical
+hide_edge_borders smart
 
 workspace_auto_back_and_forth yes
-force_display_urgency_hint 0 ms
+force_display_urgency_hint 500 ms
 focus_on_window_activation urgent
 popup_during_fullscreen smart
 
-for_window [floating] resize set 60ppt 60ppt, move position center
+#for_window [floating] resize set 60ppt 60ppt, move position center
+for_window [class="^(mpv|feh|Nemo)$"] floating enable, resize set 60ppt 60ppt, move position center
 
 # xprop | grep -E "CLASS|INSTANCE"
 # xprop | grep WM_CLASS
@@ -245,7 +252,7 @@ for_window [class="Brave-browser" urgent="latest"] focus
 for_window [class="feh"] floating enable
 for_window [con_mark="scratch"] floating enable, border pixel 2, move position center
 for_window [class="mpv"] floating enable
-for_window [class="Thunar"] floating enable, resize set 60ppt 70ppt, move position center
+for_window [class="Nemo"] floating enable, resize set 60ppt 70ppt, move position center
 
 for_window [class="Org\.gnome\.gThumb"] floating enable, resize set 90ppt 90ppt, move position center
 
@@ -314,14 +321,17 @@ set $resizeMode resize
 bindsym $mod+r mode "$resizeMode"
 mode "$resizeMode" {
         bindsym o       resize shrink   width   10 px   or 10 ppt
-        bindsym 9       resize grow     height  10 px   or 10 ppt
-        bindsym 0       resize shrink   height  10 px   or 10 ppt
         bindsym i       resize grow     width   10 px   or 10 ppt
+        bindsym 0       resize shrink   height  10 px   or 10 ppt
+        bindsym 9       resize grow     height  10 px   or 10 ppt
 
         bindsym Shift+o resize shrink   width   4 px    or 4 ppt
         bindsym Shift+9 resize grow     height  4 px    or 4 ppt
         bindsym Shift+0 resize shrink   height  4 px    or 4 ppt
         bindsym Shift+i resize grow     width   4 px    or 4 ppt
+
+        bindsym 1       floating enable, resize set 30ppt 30ppt, move position center
+        bindsym 2       floating enable, resize set 50ppt 50ppt, move position center
 
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
@@ -331,18 +341,14 @@ mode "$resizeMode" {
 
 # POWER MODE
 set $powerMode power
-bindsym $mod+Control+l mode "$powerMode"
+bindsym $mod+$amod+l mode "$powerMode"
 mode "$powerMode" {
-#   bindsym l mode "default", exec --no-startup-id i3lock -c 00000000
-#   bindsym l mode "default", exec --no-startup-id $HOME/repos/scripts/lock2
-      
-#   bindsym e mode "default", exec --no-startup-id i3exit logout    
-#   bindsym s mode "default", exec --no-startup-id i3exit suspend   
-#   bindsym r mode "default", exec --no-startup-id i3exit reboot    
-#   bindsym p mode "default", exec --no-startup-id i3exit shutdown  
-#   bindsym h mode "default", exec --no-startup-id i3exit hibernate 
+    bindsym l mode "default", exec --no-startup-id $SCRIPTS/lock
+    bindsym e mode "default", exec --no-startup-id i3-msg exit
+    bindsym r mode "default", exec --no-startup-id systemctl reboot
+    bindsym s mode "default", exec --no-startup-id systemctl suspend
+    bindsym p mode "default", exec --no-startup-id systemctl poweroff
 
-    bindsym $mod+l mode "default"
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
@@ -357,49 +363,85 @@ set $gapsMode gaps
 set $gapsModeOuter outer gaps
 set $gapsModeInner inner gaps
 bindsym $mod+g mode "$gapsMode"
+#mode "$gapsMode" {
+#    bindsym o   mode "$gapsModeOuter"
+#    bindsym i   mode "$gapsModeInner"
+#
+##   bindsym 0   mode "default", exec --no-startup-id i3-msg "gaps inner current plus set 0" && i3-msg "$gaps outer current set 0"
+#    bindsym 0   mode "default", exec --no-startup-id i3-msg "gaps inner current set 0; gaps outer current set 0"
+#    bindsym d   mode "default", exec --no-startup-id i3-msg "gaps inner current set $defaultInnerGaps" && i3-msg "gaps outer current set $defaultOuterGaps"
+#    
+##   bindsym z   mode "default", exec --no-startup-id i3-msg "gaps inner current set 10" && i3-msg "gaps outer current set 70"
+#    bindsym z   mode "default", exec --no-startup-id i3-msg "gaps inner current set 10; gaps outer current set 70"
+#
+#    bindsym Return mode "default"
+#    bindsym Escape mode "default"
+#}
+#
+#mode "$gapsModeInner" {
+#    bindsym plus    gaps inner current plus 5
+#    bindsym minus   gaps inner current minus 5
+#
+#    bindsym 0       mode "default", gaps inner current set 0
+#    bindsym d       mode "default", gaps inner current set $defaultGapsInner
+#
+#    bindsym Shift+plus    gaps inner current plus 5
+#    bindsym Shift+minus   gaps inner current minus 5
+#
+#    bindsym Shift+0       mode "default", gaps inner all set 0
+#    bindsym Shift+d       mode "default", gaps inner all set $defaultGapsInner
+#
+#    bindsym Return mode "default"
+#    bindsym Escape mode "default"
+#}
+#
+#mode "$gapsModeOuter" {
+#    bindsym plus    gaps outer current plus 5
+#    bindsym minus   gaps outer current minus 5
+#
+#    bindsym 0       mode "default", gaps outer current set 0
+#    bindsym d       mode "default", gaps outer current set $defaultGapsOuter
+#
+#    bindsym Shift+plus    gaps outer all plus 5
+#    bindsym Shift+minus   gaps outer all minus 5
+#
+#    bindsym Shift+0       mode "default", gaps outer all set 0
+#    bindsym Shift+d       mode "default", gaps outer all set $defaultGapsOuter
+#
+#    bindsym Return mode "default"
+#    bindsym Escape mode "default"
+#}
+
 mode "$gapsMode" {
     bindsym o   mode "$gapsModeOuter"
     bindsym i   mode "$gapsModeInner"
-
-    bindsym 0   mode "default", exec --no-startup-id i3-msg "gaps inner current plus set 0" && i3-msg "$gaps outer current set 0"
-    bindsym d   mode "default", exec --no-startup-id i3-msg "gaps inner current set $defaultInnerGaps" && i3-msg "gaps outer current set $defaultOuterGaps"
-    
-    bindsym z   mode "default", exec --no-startup-id i3-msg "gaps inner current set 10" && i3-msg "gaps outer current set 70"
-
+    bindsym 0   mode "default", exec --no-startup-id i3-msg "gaps inner current set 0; gaps outer current set 0"
+    bindsym d   mode "default", exec --no-startup-id i3-msg "gaps inner current set $defaultInnerGaps; gaps outer current set $defaultOuterGaps"
+    bindsym z   mode "default", exec --no-startup-id i3-msg "gaps inner current set 10; gaps outer current set 70"
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 
 mode "$gapsModeInner" {
-    bindsym plus    gaps inner current plus 5
-    bindsym minus   gaps inner current minus 5
-
-    bindsym 0       mode "default", gaps inner current set 0
-    bindsym d       mode "default", gaps inner current set $defaultGapsInner
-
-    bindsym Shift+plus    gaps inner current plus 5
-    bindsym Shift+minus   gaps inner current minus 5
-
+    bindsym plus          gaps inner current plus 5
+    bindsym minus         gaps inner current minus 5
+    bindsym 0             mode "default", gaps inner current set 0
+    bindsym d             mode "default", gaps inner current set $defaultInnerGaps
     bindsym Shift+0       mode "default", gaps inner all set 0
-    bindsym Shift+d       mode "default", gaps inner all set $defaultGapsInner
-
+    bindsym Shift+d       mode "default", gaps inner all set $defaultInnerGaps
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 
 mode "$gapsModeOuter" {
-    bindsym plus    gaps outer current plus 5
-    bindsym minus   gaps outer current minus 5
-
-    bindsym 0       mode "default", gaps outer current set 0
-    bindsym d       mode "default", gaps outer current set $defaultGapsOuter
-
+    bindsym plus          gaps outer current plus 5
+    bindsym minus         gaps outer current minus 5
+    bindsym 0             mode "default", gaps outer current set 0
+    bindsym d             mode "default", gaps outer current set $defaultOuterGaps
     bindsym Shift+plus    gaps outer all plus 5
     bindsym Shift+minus   gaps outer all minus 5
-
     bindsym Shift+0       mode "default", gaps outer all set 0
-    bindsym Shift+d       mode "default", gaps outer all set $defaultGapsOuter
-
+    bindsym Shift+d       mode "default", gaps outer all set $defaultOuterGaps
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }

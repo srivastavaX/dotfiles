@@ -37,18 +37,19 @@ separator_block_width=0
 # ===========================================================
 # STATUS BLOCKS
 # ===========================================================
-[pomodoro]
-command=pomodoro
-interval=7
-signal=8
-markup=pango
-separator=false
-
-#[playerctl]
-#command=player
-#interval=2
+#[pomodoro]
+#command=pomodoro
+#interval=1
+#signal=8
 #markup=pango
 #separator=false
+#
+[playerctl]
+command=player
+interval=2
+signal=9
+markup=pango
+separator=false
 
 [volume]
 command=volume
@@ -69,7 +70,8 @@ separator=false
 [battery]
 command=battery
 markup=pango
-interval=2
+interval=once
+signal=3
 separator=false
 
 [wifi]
