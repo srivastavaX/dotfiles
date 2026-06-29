@@ -31,3 +31,33 @@ actpy() {
 #    python -m venv "$HOME/.venvs/$1"
 #    echo "Virtualenv $1 created"
 #}
+
+# --- yazi ---
+function y() {
+    local tmp="$(mktemp -t yazi-cwd.XXXXXX)"
+    yazi "$@" --cwd-file="$tmp"
+	#if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+	#	builtin cd -- "$cwd"
+    if cwd="$(cat "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+        cd "$cwd"
+    fi
+    rm -f "$tmp"
+}
+
+
+# ------- yt-dlp --------------------------------------------------------------
+ytdlp() {
+    if [[ -z "$1" ]]; then
+        echo "Usage: ytdlp <youtube-url>"
+        return 1
+    fi
+
+    yt-dlp \
+        -f "bestaudio[acodec=opus]/bestaudio[ext=m4a]/bestaudio" \
+        -x \
+        --audio-format opus \
+        --embed-metadata \
+        --add-metadata \
+        -o "$HOME/Media/%(title)s.%(ext)s" \
+        "$@"
+}

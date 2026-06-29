@@ -6,31 +6,36 @@
 # ╚═╝╚══════╝╚═════╝░╚═╝░░╚═╝╚═╝░░╚═╝░╚════╝░
 # srivastavavisek
 
+zmodload zsh/zprof
+
 . ~/.zsh_aliases
 [[ -f ~/.zsh_functions ]] && source ~/.zsh_functions
 
 
 export PATH="$HOME/.local/share/fnm:$PATH"
-eval "$(fnm env --use-on-cd)"
+#eval "$(fnm env --use-on-cd)"
+eval "$(fnm env --shell zsh --use-on-cd --version-file-strategy=recursive)"
 
 # NVM (Node Version Manager)
-if [[ -d "$HOME/.nvm" ]]; then
-  export NVM_DIR="$HOME/.nvm"
-  [[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"
-  [[ -s "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
-fi
+#if [[ -d "$HOME/.nvm" ]]; then
+#  export NVM_DIR="$HOME/.nvm"
+#  [[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"
+#  [[ -s "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
+#fi
+#export NVM_DIR="$HOME/.nvm"
+#source /usr/share/nvm/init-nvm.sh
+
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 
 if command -v pyenv >/dev/null 2>&1; then
-  eval "$(pyenv init -)"
+    #eval "$(pyenv init -)"
 fi
 
 # opencode
 export PATH=/home/srivastava/.opencode/bin:$PATH
-
 
 # SHELL OPTIONS
 setopt autocd
@@ -54,7 +59,7 @@ setopt numericglobsort
 # ╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝
 # HISTORY
 #HISTFILE="$XDG_CACHE_HOME/zsh_histfile"
-HISTFILE=~/.histfile
+HISTFILE=$HOME/.histfile
 HISTSIZE=500000
 SAVEHIST=500000
 
@@ -78,6 +83,8 @@ setopt EXTENDED_HISTORY
 # Zsh stores time, not format. You format on display. Use history -i
 
 setopt HIST_REDUCE_BLANKS  # Remove extra blanks from history
+
+setopt HIST_EXPIRE_DUPS_FIRST
 
 # █████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗
 # ╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝
@@ -106,7 +113,14 @@ zmodload zsh/complist  # loads the completion listing module
 
 #autoload -U compinit && compinit
 autoload -U compinit
-compinit -d "$XDG_CACHE_HOME/zsh/compdump"
+#compinit -d "$XDG_CACHE_HOME/zsh/compdump"
+
+if [[ -n ~/.cache/zsh/zcompdump(#qN.mh+24) ]]; then
+    compinit
+else
+    compinit -C  # skips security checks
+fi
+
 
 autoload -U colors && colors
 
@@ -174,18 +188,6 @@ fi
 eval "$(zoxide init zsh)"
 alias cd="z"
 
-
-# --- yazi ---
-function y() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	yazi "$@" --cwd-file="$tmp"
-	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-		builtin cd -- "$cwd"
-	fi
-	rm -f -- "$tmp"
-}
-
-
 #cd ~/repos
 
 #if [[ "$TERM_PROGRAM" != "vscode" ]]; then
@@ -204,7 +206,7 @@ if [[ "$TERM" == "linux" ]]; then
 else
     #PROMPT="${NEWLINE}%K{#4c566a} %c %k%f %(?.%F{#88C0D0}.%F{#BF616A})❯%f "
     #print -P "%K{#3b4252}%F{#ECEFF4} %m %k%f%K{#4c566a}%F{#D8DEE9} %n %k%f %F{#5E81AC}▲%f %F{#D8DEE9}$(uptime -p | cut -c 4-)%f"
-    print -P "${NEWLINE}%K{#6c757d} %k%K{#495057} %k%K{#3b4252}%F{#ECEFF4}  %m %k%f%K{#8fbcbb}%F{#3b4252}%k%f%K{#8fbcbb}%F{#0B0014} %n %k%f%F{#8fbcbb}%K{#899D78}%f%k%K{#899D78}%F{#3b4252} ▲ %f%F{#0B0014}$(uptime -p | cut -c 4-) %f%k%F{#899D78}%K{#3b4252}%f%k%F{#3b4252}%K{#8fbcbb}%f%k%F{#8fbcbb}%f"
+    print -P "%K{#6c757d} %k%K{#495057} %k%K{#3b4252}%F{#ECEFF4}  %m %k%f%K{#8fbcbb}%F{#3b4252}%k%f%K{#8fbcbb}%F{#0B0014} %n %k%f%F{#8fbcbb}%K{#899D78}%f%k%K{#899D78}%F{#3b4252} ▲ %f%F{#0B0014}$(uptime -p | cut -c 4-) %f%k%F{#899D78}%K{#3b4252}%f%k%F{#3b4252}%K{#8fbcbb}%f%k%F{#8fbcbb}%f"
     #print -P "${NEWLINE}%K{#ffadad}  %k%K{#ffd6a5}  %k%K{#fdffb6}  %k%K{#caffbf}  %k%K{#9bf6ff}  %k%K{#a0c4ff}  %k%K{#bdb2ff}  %k%K{#ffc6ff}  %k"
     #print -P "%K{#ffadad}  %k%K{#ffd6a5}  %k%K{#fdffb6}  %k%K{#caffbf}  %k%K{#9bf6ff}  %k%K{#a0c4ff}  %k%K{#bdb2ff}  %k%K{#ffc6ff}  %k"
     #print -P "▓▒░%K{#3b4252}%F{#ECEFF4}  %m %k%f%K{#8fbcbb}%F{#3b4252}%k%f%K{#8fbcbb}%F{#0B0014} %n %k%f%F{#8fbcbb}%K{#899D78} %f%k%K{#899D78}%F{#3b4252} ▲ %f%F{#0B0014}$(uptime -p | cut -c 4-) %f%k%F{#899D78}%K{#3b4252} %f%k%F{#3b4252}%K{#8fbcbb} %f%k%F{#8fbcbb} %f"
@@ -212,3 +214,5 @@ else
     #eval "$(starship init zsh)" 2>/dev/null
     #THIS WILL SUPRESS ALL WARNINGS
 fi
+
+zprof

@@ -41,3 +41,13 @@ c99 -Wall -o 1-getting-started 1-getting-started.c -lm
 clang 
 suspend
 reboot
+wine igi2.exe
+yazi
+cd ~/Downloads/
+sudo apt install yazi
+cd igi2_covert_strike/IGI\ 2\ -\ Covert\ Strike/
+wine igi2.exe
+wine igi2.exe
+wine explorer
+exit
+exit

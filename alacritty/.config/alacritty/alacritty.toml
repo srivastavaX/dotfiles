@@ -16,13 +16,18 @@ opacity = 0.9
 x = 7
 y = 7
 
+[font]
+size = 10
+normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
+draw_bold_text_with_bright_colors = true
+
+[mouse]
+hide_when_typing = true
+
 [scrolling]
 history = 10000
 multiplier = 3
 
-[font]
-size = 10
-normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
 #builtin_box_drawing = true
 
 #[colors.vi_mode_cursor]

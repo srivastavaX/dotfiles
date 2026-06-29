@@ -4,13 +4,20 @@
 
 local o = vim.opt
 
--------[ LINE NUMBERS AND SCROLLING ]------------------------------------------
+
+-- █████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗
+-- ╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝
+-- LINE NUMBERS AND SCROLLING
 o.number = true
 o.relativenumber = true
 o.cursorline = true  -- highlight the current line for context
 o.scrolloff	= 8	-- 999 for cursor-centered mode
 -- Keeps 8 lines visible above and below cursor when scrolling.
 
+
+
+-- █████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗
+-- ╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝
 -------[ INDENTATION ]---------------------------------------------------------
 o.tabstop = 4     -- a tab character equates to 4 spaces
 o.shiftwidth = 4     -- use 4 spaces indent/outdent when << or >> or ==
@@ -74,3 +81,8 @@ vim.g.maplocalleader = ' '
 
 -- disable default behavior of space
 vim.keymap.set({'n', 'v'}, '<Space>', '<Nop>', { silent = true })
+
+
+-- VimTeX
+vim.g.vimtex_view_method = "zathura"
+vim.g.vimtex_compiler_method = "latexmk"

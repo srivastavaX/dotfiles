@@ -23,6 +23,8 @@ nmap("<leader>q", ":q<CR>", "Quit File")
 vmap("J", ":m '>+1<CR>gv=gv", "Move Selected Lines Up")
 vmap("K", ":m '<-2<CR>gv=gv", "Move Selected Lines Down")
 
+vmap("<leader>y", '"*y', "Yank selection to Primary Selection")
+
 nmap("<C-d>", "<C-d>zz", "Scroll Down keeping cursor centered")
 nmap("<C-u>", "<C-u>zz", "Scroll Up keeping cursor centered")
 nmap("n", "nzzzv", "keep search results centered")
