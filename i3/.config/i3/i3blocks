@@ -46,10 +46,16 @@ separator_block_width=0
 #
 [playerctl]
 command=player
-interval=2
+interval=1
 signal=9
 markup=pango
 separator=false
+
+#[cliphist]
+#command=cliphistBlock
+#interval=once
+#markup=pango
+#separator=false
 
 [volume]
 command=volume
@@ -70,7 +76,7 @@ separator=false
 [battery]
 command=battery
 markup=pango
-interval=once
+interval=2
 signal=3
 separator=false
 
@@ -83,7 +89,7 @@ instance=wlp3s0
 separator=false
 
 [time]
-command=echo "<span foreground='#8fbcbb' background='#2e3440' size='x-large'></span><span background='#8fbcbb' foreground='#04151f'> <span rise='2pt' size='large'>$(date +'%a %d-%b %H:%M')</span> </span>"
+command=echo "<span foreground='#8fbcbb' background='#0e0f13' size='x-large'></span><span background='#8fbcbb' foreground='#04151f'> <span rise='2pt' size='large'>$(date +'%a %d-%b %H:%M')</span> </span>"
 markup=pango
 interval=1
 separator=false
